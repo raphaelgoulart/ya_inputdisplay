@@ -1,0 +1,68 @@
+[gd_scene load_steps=5 format=3 uid="uid://bhj0rpln5mrx4"]
+
+[ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://inputbtn.tscn" id="1_7vupe"]
+[ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://inputstrum.tscn" id="2_m1xo0"]
+[ext_resource type="Script" path="res://IPS.gd" id="3_0vwf1"]
+[ext_resource type="Script" path="res://fps.gd" id="4_l5kbf"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="G" parent="." instance=ExtResource("1_7vupe")]
+position = Vector2(0, 50)
+metadata/color = Color(0, 1, 0, 1)
+
+[node name="R" parent="." instance=ExtResource("1_7vupe")]
+position = Vector2(50, 50)
+metadata/btn = 83
+metadata/color = Color(1, 0, 0, 1)
+metadata/index = 1
+metadata/gp_btn = 1
+
+[node name="Y" parent="." instance=ExtResource("1_7vupe")]
+position = Vector2(100, 50)
+metadata/btn = 68
+metadata/color = Color(1, 1, 0, 1)
+metadata/index = 2
+metadata/gp_btn = 3
+
+[node name="B" parent="." instance=ExtResource("1_7vupe")]
+position = Vector2(150, 50)
+metadata/btn = 70
+metadata/color = Color(0, 0, 1, 1)
+metadata/index = 3
+metadata/gp_btn = 2
+
+[node name="O" parent="." instance=ExtResource("1_7vupe")]
+position = Vector2(200, 50)
+metadata/btn = 71
+metadata/color = Color(1, 0.501961, 0, 1)
+metadata/index = 4
+metadata/gp_btn = 9
+
+[node name="U" parent="." instance=ExtResource("2_m1xo0")]
+position = Vector2(0, 25)
+metadata/btn = 4194320
+metadata/gp_btn = 11
+
+[node name="D" parent="." instance=ExtResource("2_m1xo0")]
+position = Vector2(125, 25)
+metadata/btn = 4194322
+metadata/index = 6
+metadata/gp_btn = 12
+
+[node name="IPS" type="Label" parent="."]
+offset_top = -1.0
+offset_right = 250.0
+offset_bottom = 25.0
+text = "IPS: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_0vwf1")
+
+[node name="FPS" type="Label" parent="."]
+visible = false
+offset_left = 260.0
+offset_right = 300.0
+offset_bottom = 26.0
+text = "FPS:"
+script = ExtResource("4_l5kbf")

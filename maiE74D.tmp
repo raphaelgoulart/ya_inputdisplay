@@ -1,0 +1,41 @@
+[gd_scene load_steps=3 format=3 uid="uid://bhj0rpln5mrx4"]
+
+[ext_resource type="Script" path="res://inputbtn.gd" id="1_2ciu4"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_t3faq"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Button" type="Node" parent="."]
+script = ExtResource("1_2ciu4")
+metadata/btn = 65
+
+[node name="BG" type="ColorRect" parent="Button"]
+offset_right = 50.0
+offset_bottom = 50.0
+color = Color(0, 0, 0, 1)
+
+[node name="Border" type="ColorRect" parent="Button"]
+offset_right = 50.0
+offset_bottom = 50.0
+color = Color(0, 1, 0, 0.25098)
+
+[node name="Center" type="ColorRect" parent="Button"]
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 46.0
+offset_bottom = 46.0
+color = Color(0, 1, 0, 0.25098)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Button"]
+offset_right = 50.0
+offset_bottom = 50.0
+alignment = 1
+
+[node name="Label" type="Label" parent="Button/VBoxContainer"]
+layout_mode = 2
+text = "0"
+label_settings = SubResource("LabelSettings_t3faq")
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true

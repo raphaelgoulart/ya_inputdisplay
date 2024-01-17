@@ -1,0 +1,10 @@
+Label
+Area2D
+CollisionShape2D
+VBoxContainer
+Control
+Node
+Node2D
+ColorRect
+HBoxContainer
+RichTextLabel

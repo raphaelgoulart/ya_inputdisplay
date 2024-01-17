@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://bhj0rpln5mrx4"]
+
+[ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://inputbtn.tscn" id="1_7vupe"]
+[ext_resource type="Script" path="res://Singleton.gd" id="1_xanfh"]
+[ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://inputstrum.tscn" id="2_m1xo0"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Singleton" type="Node" parent="."]
+script = ExtResource("1_xanfh")
+
+[node name="G" parent="Singleton" instance=ExtResource("1_7vupe")]
+position = Vector2(0, 25)
+metadata/color = Color(0, 1, 0, 1)
+
+[node name="R" parent="Singleton" instance=ExtResource("1_7vupe")]
+position = Vector2(50, 25)
+metadata/btn = 83
+metadata/color = Color(1, 0, 0, 1)
+
+[node name="Y" parent="Singleton" instance=ExtResource("1_7vupe")]
+position = Vector2(100, 25)
+metadata/btn = 68
+metadata/color = Color(1, 1, 0, 1)
+
+[node name="B" parent="Singleton" instance=ExtResource("1_7vupe")]
+position = Vector2(150, 25)
+metadata/btn = 70
+metadata/color = Color(0, 0, 1, 1)
+
+[node name="O" parent="Singleton" instance=ExtResource("1_7vupe")]
+position = Vector2(200, 25)
+metadata/btn = 71
+metadata/color = Color(1, 0.501961, 0, 1)
+
+[node name="U" parent="Singleton" instance=ExtResource("2_m1xo0")]
+metadata/btn = 4194320
+
+[node name="D" parent="Singleton" instance=ExtResource("2_m1xo0")]
+position = Vector2(125, 0)
+metadata/btn = 4194322

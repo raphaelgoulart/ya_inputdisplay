@@ -1,0 +1,13 @@
+ea4bc82a6ad023ab7ee23ee620429895
+::res://::1705524962
+export_presets.cfg::TextFile::-1::1705524597::0::1::::<><>::
+fps.gd::GDScript::-1::1705514242::0::1::::<>Label<>::
+icon.svg::CompressedTexture2D::870500225311073496::1704282027::1704282034::1::::<><>::
+InputBar.gd::GDScript::-1::1705524347::0::1::::<>Node<>::
+inputbtn.gd::GDScript::-1::1705524280::0::1::::<>Area2D<>::
+inputbtn.tscn::PackedScene::2008161884162338923::1705524482::0::1::::<><>::res://inputbtn.gd
+inputstrum.tscn::PackedScene::1047898640309131959::1705524482::0::1::::<><>::res://inputbtn.gd
+input_bar.tscn::PackedScene::1091390821088404543::1705524482::0::1::::<><>::res://InputBar.gd
+IPS.gd::GDScript::-1::1705517381::0::1::::<>Label<>::
+main.tscn::PackedScene::2897871077735753999::1705524639::0::1::::<><>::uid://3u1ers8tmwr8::::res://inputbtn.tscn<>uid://o6u0cs62c6md::::res://inputstrum.tscn<>res://IPS.gd<>res://fps.gd
+Singleton.gd::GDScript::-1::1705517461::0::1::::<>Node<>::
