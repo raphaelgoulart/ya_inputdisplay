@@ -14,6 +14,7 @@ This is still very early and WIP. Here are some of the main TODO items (in no pa
 - Make joypad support reading axes instead of only buttons;
 - Implement calibration for axes;
 - Save current bindings / settings;
+- Allow changing the speed and width of the input bars (as integers in the settings file);
 - Color profile support (as hex values in the settings file).
 
 My time to work on this is relatively limited, but feel free to open issues and pull requests. Contributions are very welcome!
