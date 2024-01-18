@@ -42,7 +42,6 @@ metadata/gp_btn = 9
 [node name="U" parent="." instance=ExtResource("2_m1xo0")]
 position = Vector2(0, 25)
 metadata/btn = 4194320
-metadata/color = Color(0.501961, 0, 1, 1)
 metadata/gp_btn = 11
 
 [node name="D" parent="." instance=ExtResource("2_m1xo0")]
