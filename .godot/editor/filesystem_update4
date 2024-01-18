@@ -4,3 +4,5 @@ res://InputBar.gd
 res://input_bar.tscn
 res://inputbtn.tscn
 res://inputstrum.tscn
+res://Singleton.gd
+res://README.md

@@ -21,6 +21,8 @@ var pressed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	index = get_meta("index")
+	self.set_meta("color",Color(Singleton.colors[index]))
 	btn = get_meta("btn")
 	gp_btn = get_meta("gp_btn")
 	label = $VBoxContainer/Label
@@ -36,7 +38,6 @@ func _ready():
 	spawn_inputbar = get_meta("inputbar")
 	length_label = $Length
 	if not spawn_inputbar: length_label.visible = false
-	index = get_meta("index")
 	#
 	if (spawn_inputbar):
 		label.label_settings = LabelSettings.new()

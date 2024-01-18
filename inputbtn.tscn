@@ -6,10 +6,12 @@
 size = Vector2(50, 50)
 
 [sub_resource type="LabelSettings" id="LabelSettings_tihgl"]
+line_spacing = 0.0
 font_size = 31
 
 [sub_resource type="LabelSettings" id="LabelSettings_t3faq"]
-font_size = 8
+line_spacing = 0.0
+font_size = 12
 
 [node name="Button" type="Area2D"]
 script = ExtResource("1_fkaf7")
@@ -41,8 +43,9 @@ offset_bottom = 46.0
 color = Color(1, 1, 1, 0.25098)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_top = -4.0
 offset_right = 50.0
-offset_bottom = 46.0
+offset_bottom = 40.0
 alignment = 1
 
 [node name="Label" type="Label" parent="VBoxContainer"]
@@ -54,9 +57,9 @@ vertical_alignment = 1
 clip_text = true
 
 [node name="Length" type="Label" parent="."]
-offset_top = 35.0
+offset_top = 31.0
 offset_right = 50.0
-offset_bottom = 50.0
+offset_bottom = 48.0
 text = "0.000"
 label_settings = SubResource("LabelSettings_t3faq")
 horizontal_alignment = 1

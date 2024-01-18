@@ -5,21 +5,19 @@ var kb
 var btn
 var gp_btn
 var color
-var size_rate = 400
 var rect
 var timestamp
 var x
 var y
-var w = 42
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rect = $ColorRect
 	rect.color = color
 	rect.color.a = 1
-	x += (50-w)/2
+	x += (50-Singleton.w)/2
 	rect.position.x = x
-	rect.size.x = w
+	rect.size.x = Singleton.w
 	rect.position.y += y
 	
 func _input(ev):
@@ -34,11 +32,11 @@ func _process(delta):
 	if rect.position.y > get_viewport().get_visible_rect().size.y:
 		call_deferred("free")
 	if released:
-		rect.position.y += size_rate * delta
+		rect.position.y += Singleton.scroll_rate * delta
 	else:
-		rect.size.y += size_rate * delta
+		rect.size.y += Singleton.scroll_rate * delta
 
 func bar_release():
 	released = true
-	rect.size.y = (Time.get_unix_time_from_system() - timestamp) * size_rate
+	rect.size.y = (Time.get_unix_time_from_system() - timestamp) * Singleton.scroll_rate
 	if (rect.size.y < 1): rect.size.y = 1
