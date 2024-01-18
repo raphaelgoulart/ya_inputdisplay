@@ -67,13 +67,13 @@ func _input(ev):
 	if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT and insideArea:
 		mapping = not mapping
 	if ev is InputEventKey and not ev.echo:
-		if mapping and ev.keycode not in [45, 4194308]: # [-,backsp]; insert other reserved keycodes here
+		if mapping and ev.keycode not in [4194308, 45, 61, 91, 93, 96]: # insert reserved keycodes here
 			if ev.pressed:
 				btn = ev.keycode
 			else:
 				mapping = false
 		else:
-			if ev.keycode == 45 and ev.pressed: # - pressed; clear
+			if ev.keycode == 4194308 and ev.pressed: # backsp pressed; clear
 				count = 0
 				label.text = str(count)
 				length = 0

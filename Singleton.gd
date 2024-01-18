@@ -23,8 +23,18 @@ func _ready():
 	colors[4] = config.get_value("Colors", "orange")
 	colors[5] = config.get_value("Colors", "up")
 	colors[6] = config.get_value("Colors", "down")
-	
-# TODO: calibration key receive + function
+
+func _input(ev):
+	if ev is InputEventKey and ev.pressed:
+		if not ev.echo:
+			# TODO: calibration key (`, keycode 96) receive + function
+			pass
+		match (ev.keycode):
+			45:	scroll_rate -= 10 # -
+			61:	scroll_rate += 10 # =
+			91:	w -= 1 # [
+			93:	w += 1 # ]
+			4194308: inputs_gone = []
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
