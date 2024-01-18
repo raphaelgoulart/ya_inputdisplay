@@ -10,13 +10,16 @@ var rect
 var timestamp
 var x
 var y
+var w = 42
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	rect = $ColorRect
 	rect.color = color
 	rect.color.a = 1
+	x += (50-w)/2
 	rect.position.x = x
+	rect.size.x = w
 	rect.position.y += y
 	
 func _input(ev):
@@ -33,9 +36,9 @@ func _process(delta):
 	if released:
 		rect.position.y += size_rate * delta
 	else:
-		rect.scale.y += size_rate * delta
+		rect.size.y += size_rate * delta
 
 func bar_release():
 	released = true
-	rect.scale.y = (Time.get_unix_time_from_system() - timestamp) * size_rate
-	if (rect.scale.y < 1): rect.scale.y = 1
+	rect.size.y = (Time.get_unix_time_from_system() - timestamp) * size_rate
+	if (rect.size.y < 1): rect.size.y = 1

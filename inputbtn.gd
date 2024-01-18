@@ -112,8 +112,8 @@ func update_input_counter(kb = true):
 		var font = label.get_theme_default_font()
 		var w = font.get_string_size(label.text, label.horizontal_alignment, -1, default_font_size).x
 		if (w > 46):
-			var rate = w/46
-			label.label_settings.font_size = default_font_size/rate
+			var rate = 46/w
+			label.label_settings.font_size = default_font_size*rate
 		#
 		length = 0
 		var new_inputbar = inputbar.instantiate()
