@@ -25,7 +25,7 @@ If your guitar is an Ardwiino, either set it to XInput, or upgrade it to the [Sa
 Otherwise, please open an issue, mentioning which guitar model it is, and whether it's only some buttons that aren't detected, or the guitar as a whole.
 
 ## TODO
-This is still very early and WIP - only tested with an Ardwiino in XInput mode. Here are some of the main TODO items (in no particular order):
+This is still WIP; here are some of the main TODO items (in no particular order):
 - Test with other guitars (currently tested with Santroller and Xplorer);
 - Make joypad support reading axes instead of only buttons;
 - Implement calibration for axes;
