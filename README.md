@@ -3,6 +3,8 @@ Yet another input display for Clone Hero / YARG **(WIP)**
 
 It's made using Godot 4.2.1.
 
+![](https://github.com/raphaelgoulart/ya_inputdisplay/blob/main/demo.gif)
+
 ## Controls
 - Click on top of the button to re-bind it to another key or button (**warning:** not saved yet);
 - Press `backspace` to reset counters;
