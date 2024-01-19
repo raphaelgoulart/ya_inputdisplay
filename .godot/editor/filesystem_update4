@@ -2,3 +2,5 @@ res://main.tscn
 res://inputbtn.gd
 res://input_bar.tscn
 res://inputstrum.tscn
+res://README.md
+res://Singleton.gd

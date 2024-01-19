@@ -6,7 +6,7 @@ It's made using Godot 4.2.1.
 ![](https://github.com/raphaelgoulart/ya_inputdisplay/blob/main/demo.gif)
 
 ## Controls
-- Click on top of the button to re-bind it to another key or button (**warning:** not saved yet);
+- Click on top of the button to re-bind it to another key or button;
 - Press `backspace` to reset counters;
 - Press `-` or `=` to decrease/increase the scrolling speed of the input bars;
 - Press `[` or `]` to decrease/increase the width of the input bars (does not affect existing input bars, only new ones).
@@ -27,8 +27,8 @@ Otherwise, please open an issue, mentioning which guitar model it is, and whethe
 ## TODO
 This is still very early and WIP - only tested with an Ardwiino in XInput mode. Here are some of the main TODO items (in no particular order):
 - Test with other guitars (currently tested with Santroller and Xplorer);
-- Make joypad support read axes instead of only buttons;
+- Make joypad support reading axes instead of only buttons;
 - Implement calibration for axes;
-- Save/load current bindings / calibration info;
+- Save/load calibration info;
 
 My time to work on this is relatively limited, but feel free to open issues and pull requests. Contributions are very welcome!

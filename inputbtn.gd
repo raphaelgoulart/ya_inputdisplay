@@ -22,9 +22,11 @@ var pressed = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	index = get_meta("index")
+	# bindings
+	btn = Singleton.config.get_value(str(index), "btn", get_meta("btn"))
+	gp_btn = Singleton.config.get_value(str(index), "gp_btn", get_meta("gp_btn"))
+	# colors and visual stuff
 	self.set_meta("color",Color(Singleton.colors[index]))
-	btn = get_meta("btn")
-	gp_btn = get_meta("gp_btn")
 	label = $VBoxContainer/Label
 	center = $Center
 	var old_a = center.color.a

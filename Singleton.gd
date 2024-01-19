@@ -5,11 +5,11 @@ var ips = 0
 var scroll_rate = 400
 var w = 50
 var colors = ["#00FF00","#FF0000","#FFFF00","#0000FF","#FF8000","#8000FF","#8000FF"]
+var config
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	# TODO: read bindings/calibration info
-	var config = ConfigFile.new()
+	config = ConfigFile.new()
 	var err = config.load("user://yaid_settings.cfg")
 	if err != OK:
 		print("error reading settings file; using default values...")
@@ -23,6 +23,7 @@ func _ready():
 	colors[4] = config.get_value("Colors", "orange")
 	colors[5] = config.get_value("Colors", "up")
 	colors[6] = config.get_value("Colors", "down")
+	# TODO: read calibration info
 
 func _input(ev):
 	if ev is InputEventKey and ev.pressed:
@@ -50,7 +51,7 @@ func _process(delta):
 
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		# TODO: save bindings/calibrations here
+		
 		# save settings here
 		var config = ConfigFile.new()
 		# Store some values.
@@ -63,6 +64,15 @@ func _notification(what):
 		config.set_value("Colors", "orange", colors[4])
 		config.set_value("Colors", "up", colors[5])
 		config.set_value("Colors", "down", colors[6])
+		# bindings
+		var names = ["G","R","Y","B","O","U","D"]
+		var i = 0
+		for name in names:
+			var node = get_node("/root/Node2D/" + name)
+			config.set_value(str(i), "btn", node.btn)
+			config.set_value(str(i), "gp_btn", node.gp_btn)
+			i += 1
+		# TODO: save calibration info here
 		# Save it to a file (overwrite if already exists).
 		config.save("user://yaid_settings.cfg")
 		get_tree().quit() # default behavior
