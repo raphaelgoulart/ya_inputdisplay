@@ -19,10 +19,14 @@ Some of these can be edited in-app, but not all; the settings file can be found 
 
 If you cannot find the file, just open the input display and close it; the file is saved on application close.
 
+## Guitar not detected! What do I do?
+If your guitar is an Ardwiino, either set it to XInput, or upgrade it to the [Santroller](https://github.com/Santroller/Santroller) firmware.
+
+Otherwise, please open an issue, mentioning which guitar model it is, and whether it's only some buttons that aren't detected, or the guitar as a whole.
+
 ## TODO
 This is still very early and WIP - only tested with an Ardwiino in XInput mode. Here are some of the main TODO items (in no particular order):
-- Make Ardwiino PS3 be detected;
-- Test with other guitars / Ardwiino settings;
+- Test with other guitars (currently tested with Santroller and Xplorer);
 - Make joypad support read axes instead of only buttons;
 - Implement calibration for axes;
 - Save/load current bindings / calibration info;
