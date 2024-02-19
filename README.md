@@ -26,7 +26,7 @@ Otherwise, please open an issue, mentioning which guitar model it is, and whethe
 
 ## TODO
 This is still WIP; here are some of the main TODO items (in no particular order):
-- Test with other guitars (currently tested with Santroller and Xplorer);
+- Test with other guitars (currently tested with Santroller, Xplorer, Fender RB1 Xbox 360);
 - Make joypad support reading axes instead of only buttons;
 - Implement calibration for axes;
 - Save/load calibration info;
