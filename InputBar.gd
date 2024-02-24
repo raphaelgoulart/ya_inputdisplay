@@ -4,6 +4,9 @@ var released = false
 var kb
 var btn
 var gp_btn
+var gp_axis
+var gp_axis_device
+var gp_axis_positive
 var color
 var rect
 var timestamp
@@ -22,10 +25,13 @@ func _ready():
 	
 func _input(ev):
 	if not released:
-		if kb and ev is InputEventKey and ev.keycode == btn and not ev.pressed:
+		if ev is InputEventKey and ev.keycode == btn and not ev.pressed:
 			bar_release()
-		if not kb and ev is InputEventJoypadButton and ev.button_index == gp_btn and not ev.pressed:
+		if ev is InputEventJoypadButton and ev.button_index == gp_btn and not ev.pressed:
 			bar_release()
+		if ev is InputEventJoypadMotion and ev.device == gp_axis_device and ev.axis == gp_axis:
+			var result = Singleton.process_axis_input(ev.device,ev.axis,ev.axis_value)
+			if not result["pressed"]: bar_release()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

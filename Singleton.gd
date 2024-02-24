@@ -6,6 +6,8 @@ var scroll_rate = 400
 var w = 50
 var colors = ["#00FF00","#FF0000","#FFFF00","#0000FF","#FF8000","#8000FF","#8000FF"]
 var config
+var calibration
+var deadzone = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -23,13 +25,31 @@ func _ready():
 	colors[4] = config.get_value("Colors", "orange")
 	colors[5] = config.get_value("Colors", "up")
 	colors[6] = config.get_value("Colors", "down")
-	# TODO: read calibration info
+	
+func calibrate():
+	calibration = {}
+	for joypad in Input.get_connected_joypads():
+		var btn_list = {}
+		for axis in range(11):
+			btn_list[axis] = Input.get_joy_axis(joypad,axis)
+		calibration[joypad] = btn_list
+		
+func process_axis_input(joypad,axis,value):
+	if (calibration == null): calibrate()
+	value = value - calibration[joypad][axis]
+	var result = {}
+	if abs(value) > deadzone:
+		result["pressed"] = true
+		result["positive"] = value > 0
+	else:
+		result["pressed"] = false
+	return result
 
 func _input(ev):
 	if ev is InputEventKey and ev.pressed:
 		if not ev.echo:
-			# TODO: calibration key (`, keycode 96) receive + function
-			pass
+			# calibration key (`, keycode 96)
+			if ev.keycode == 96: calibrate()
 		match (ev.keycode):
 			45:	scroll_rate -= 10 # -
 			61:	scroll_rate += 10 # =
@@ -39,6 +59,9 @@ func _input(ev):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	# auto-calibration on app start; doesn't quite work in _ready()
+	if (calibration == null): calibrate()
+	
 	var timestamp = Time.get_unix_time_from_system()
 	var inputs_to_remove = []
 	for i in inputs_gone.size():
@@ -71,8 +94,10 @@ func _notification(what):
 			var node = get_node("/root/Node2D/" + name)
 			config.set_value(str(i), "btn", node.btn)
 			config.set_value(str(i), "gp_btn", node.gp_btn)
+			config.set_value(str(i), "gp_axis", node.gp_axis)
+			config.set_value(str(i), "gp_axis_device", node.gp_axis_device)
+			config.set_value(str(i), "gp_axis_positive", node.gp_axis_positive)
 			i += 1
-		# TODO: save calibration info here
 		# Save it to a file (overwrite if already exists).
 		config.save("user://yaid_settings.cfg")
 		get_tree().quit() # default behavior
