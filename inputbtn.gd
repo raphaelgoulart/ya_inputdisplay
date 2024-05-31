@@ -22,6 +22,9 @@ var index
 var default_font_size = 31
 var pressed = false
 
+# This is kept track of to detect duplicate inputs.
+var gp_previous_framecount = 0.0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	index = get_meta("index")
@@ -91,7 +94,10 @@ func _input(ev):
 				mapping = false
 		elif ev.button_index == gp_btn:
 				if ev.pressed:
-					update_input_counter(false)
+					# Make sure the Input isnt a duplicate
+					if Engine.get_process_frames() != gp_previous_framecount:
+						gp_previous_framecount = Engine.get_process_frames()
+						update_input_counter(false)
 				else:
 					pressed = false
 					if spawn_inputbar:
