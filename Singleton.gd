@@ -66,7 +66,7 @@ func _process(delta):
 	var inputs_to_remove = []
 	for i in inputs_gone.size():
 		if timestamp - inputs_gone[i] >= 1:
-			inputs_to_remove.append(i)
+			inputs_to_remove.insert(0, i)
 	for x in inputs_to_remove:
 		inputs_gone.remove_at(x)
 	ips = len(inputs_gone)
