@@ -8,6 +8,7 @@ export_presets.cfg
 .godot/shader_cache
 .godot/exported
 .godot/export_credentials.cfg
+*.tmp
 
 # Imported translations (automatically generated from CSV files)
 *.translation
