@@ -13,40 +13,40 @@ metadata/color = Color(0, 1, 0, 1)
 
 [node name="R" parent="." instance=ExtResource("1_7vupe")]
 position = Vector2(50, 50)
-metadata/btn = 83
+metadata/kb_btn = 83
 metadata/color = Color(1, 0, 0, 1)
 metadata/index = 1
 metadata/gp_btn = 1
 
 [node name="Y" parent="." instance=ExtResource("1_7vupe")]
 position = Vector2(100, 50)
-metadata/btn = 68
+metadata/kb_btn = 68
 metadata/color = Color(1, 1, 0, 1)
 metadata/index = 2
 metadata/gp_btn = 3
 
 [node name="B" parent="." instance=ExtResource("1_7vupe")]
 position = Vector2(150, 50)
-metadata/btn = 70
+metadata/kb_btn = 70
 metadata/color = Color(0, 0, 1, 1)
 metadata/index = 3
 metadata/gp_btn = 2
 
 [node name="O" parent="." instance=ExtResource("1_7vupe")]
 position = Vector2(200, 50)
-metadata/btn = 71
+metadata/kb_btn = 71
 metadata/color = Color(1, 0.501961, 0, 1)
 metadata/index = 4
 metadata/gp_btn = 9
 
 [node name="U" parent="." instance=ExtResource("2_m1xo0")]
 position = Vector2(0, 25)
-metadata/btn = 4194320
+metadata/kb_btn = 4194320
 metadata/gp_btn = 11
 
 [node name="D" parent="." instance=ExtResource("2_m1xo0")]
 position = Vector2(125, 25)
-metadata/btn = 4194322
+metadata/kb_btn = 4194322
 metadata/index = 6
 metadata/gp_btn = 12
 

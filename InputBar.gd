@@ -1,8 +1,8 @@
 extends Node
 
 var released = false
-var kb
-var btn
+var kb # unused (is never read)
+var kb_btn
 var gp_btn
 var gp_axis
 var gp_axis_device
@@ -18,14 +18,14 @@ func _ready():
 	rect = $ColorRect
 	rect.color = color
 	rect.color.a = 1
-	x += (50-Singleton.w)/2
+	x += floor((50-Singleton.width)/2.0)
 	rect.position.x = x
-	rect.size.x = Singleton.w
+	rect.size.x = Singleton.width
 	rect.position.y += y
 	
 func _input(ev):
 	if not released:
-		if ev is InputEventKey and ev.keycode == btn and not ev.pressed:
+		if ev is InputEventKey and ev.keycode == kb_btn and not ev.pressed:
 			bar_release()
 		if ev is InputEventJoypadButton and ev.button_index == gp_btn and not ev.pressed:
 			bar_release()

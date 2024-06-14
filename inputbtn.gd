@@ -1,7 +1,7 @@
 extends Area2D
 
 const inputbar = preload("res://input_bar.tscn")
-var btn
+var kb_btn
 var gp_btn
 var gp_axis
 var gp_axis_device
@@ -10,7 +10,7 @@ var label
 var center
 var color
 var count = 0
-var max_a = 0.5
+var max_alpha = 0.5
 var fade_rate = 4
 var spawn_inputbar = true
 var length_label
@@ -29,7 +29,10 @@ var gp_previous_framecount = 0.0
 func _ready():
 	index = get_meta("index")
 	# bindings
-	btn = Singleton.config.get_value(str(index), "btn", get_meta("btn"))
+	if Singleton.config_version == 1.1: # this has to be checked incase a config with an older version is read
+		kb_btn = Singleton.config.get_value(str(index), "kb_btn", get_meta("kb_btn"))
+	else:
+		kb_btn = Singleton.config.get_value(str(index), "btn", get_meta("kb_btn"))
 	gp_btn = Singleton.config.get_value(str(index), "gp_btn", get_meta("gp_btn"))
 	gp_axis = Singleton.config.get_value(str(index), "gp_axis", null)
 	gp_axis_device = Singleton.config.get_value(str(index), "gp_axis_device", null)
@@ -65,7 +68,7 @@ func _input(ev):
 		if mapping:
 			var result = Singleton.process_axis_input(ev.device,ev.axis,ev.axis_value)
 			if not pressed and result["pressed"]:
-				btn = null
+				kb_btn = null
 				gp_btn = null
 				gp_axis = ev.axis
 				gp_axis_device = ev.device
@@ -88,7 +91,7 @@ func _input(ev):
 		if mapping:
 			if ev.pressed:
 				gp_axis = null
-				btn = null
+				kb_btn = null
 				gp_btn = ev.button_index
 			else:
 				mapping = false
@@ -110,7 +113,7 @@ func _input(ev):
 			if ev.pressed:
 				gp_axis = null
 				gp_btn = null
-				btn = ev.keycode
+				kb_btn = ev.keycode
 			else:
 				mapping = false
 		else:
@@ -119,7 +122,7 @@ func _input(ev):
 				label.text = str(count)
 				length = 0
 				length_label.text = "%0.3f" % length
-			if ev.keycode == btn:
+			if ev.keycode == kb_btn:
 				if ev.pressed:
 					update_input_counter(true)
 				else:
@@ -135,7 +138,7 @@ func _process(delta):
 			length += delta
 			length_label.text = "%0.3f" % length
 	elif mapping:
-		center.color.a = max_a
+		center.color.a = max_alpha
 	else:
 		if center.color.a > color.a:
 			center.color.a -= fade_rate * delta
@@ -147,7 +150,7 @@ func update_input_counter(kb = true):
 	pressed = true
 	count = count + 1
 	label.text = str(count)
-	center.color.a = max_a
+	center.color.a = max_alpha
 	timestamp = Time.get_unix_time_from_system()
 	if spawn_inputbar:
 		# resize text dynamically
@@ -160,7 +163,7 @@ func update_input_counter(kb = true):
 		length = 0
 		var new_inputbar = inputbar.instantiate()
 		new_inputbar.kb = kb
-		new_inputbar.btn = btn
+		new_inputbar.kb_btn = kb_btn
 		new_inputbar.gp_btn = gp_btn
 		new_inputbar.gp_axis = gp_axis
 		new_inputbar.gp_axis_device = gp_axis_device

@@ -15,7 +15,7 @@ font_size = 12
 
 [node name="Button" type="Area2D"]
 script = ExtResource("1_fkaf7")
-metadata/btn = 65
+metadata/kb_btn = 65
 metadata/color = Color(1, 1, 1, 1)
 metadata/inputbar = true
 metadata/index = 0
