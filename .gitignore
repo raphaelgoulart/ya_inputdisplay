@@ -4,10 +4,7 @@ export.cfg
 export_presets.cfg
 
 # Godot Editor-specific ignores
-.godot/editor
-.godot/shader_cache
-.godot/exported
-.godot/export_credentials.cfg
+.godot/
 *.tmp
 
 # Imported translations (automatically generated from CSV files)
