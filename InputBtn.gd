@@ -1,6 +1,6 @@
 extends Area2D
 
-const inputbar = preload("res://input_bar.tscn")
+const inputbar = preload("res://InputBar.tscn")
 var kb_btn
 var gp_btn
 var gp_axis
