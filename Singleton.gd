@@ -20,6 +20,7 @@ var deadzone = 0.5
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	DisplayServer.window_set_min_size(Vector2i(820, 64))
+
 func calibrate():
 	calibration = {}
 	for joypad in Input.get_connected_joypads():
@@ -66,12 +67,14 @@ func _process(_delta):
 		inputs_gone.remove_at(x)
 	ips = len(inputs_gone)
 
-func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		save_config_and_exit()
 func update_spinboxes():
 		for spinbox in config_interface_spinboxes:
 			spinbox.apply()
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		save_config_and_exit()
+
 func save_config_and_exit():
 	if config_interface != null:
 		update_spinboxes()

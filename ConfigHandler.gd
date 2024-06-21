@@ -16,9 +16,6 @@ var current_config: Config
 func _ready():
 	load_cfg()
 
-func _process(_delta):
-	pass
-
 var config_file: ConfigFile
 func load_cfg():
 	current_config = Config.new()
@@ -42,16 +39,6 @@ func load_cfg():
 
 	# colors
 	load_colors()
-
-func has_illegal_symbols(arg: String, allow_dec_point: bool=true):
-	var valid_symbols = "0123456789."
-	if not allow_dec_point:
-		valid_symbols = "0123456789"
-	var single_symbols = arg.split()
-	for symbol in single_symbols:
-		if symbol not in valid_symbols:
-			return true
-	return false
 
 func load_colors():
 	for i in 7:
@@ -107,7 +94,7 @@ func save_config(version=2): # version should be either 1, 1.1 or 2
 		new_config_file.set_value("Settings", "width", current_config.input_bar_width)
 	else:
 		new_config_file.set_value("Settings", "input_bar_width", current_config.input_bar_width)
-
+	new_config_file.set_value("Settings", "always_show_hamburger", current_config.always_show_hamburger)
 	# colors
 	save_colors()
 
@@ -119,7 +106,7 @@ func save_config(version=2): # version should be either 1, 1.1 or 2
 	
 func save_colors():
 	for i in 7:
-		new_config_file.set_value("Colors", color_index_to_config_key(i), "#" + current_config.colors[i].to_html(false))
+		new_config_file.set_value("Colors", color_index_to_config_key(i, new_config_file_version), "#" + current_config.colors[i].to_html(false))
 
 func save_bindings():
 	for btn: InputBtn in Singleton.btns:
@@ -127,20 +114,20 @@ func save_bindings():
 	
 		var binding = btn.binding
 
-		if new_config_file_version == 2:
+		if new_config_file_version < 2:
+			new_config_file.set_value(config_name, input_source_to_config_key(binding.current_input_source, new_config_file_version), binding.get_current_binding())
+		else:
 			new_config_file.set_value(config_name, "input_source", binding.current_input_source)
 			new_config_file.set_value(config_name, "binding", binding.get_current_binding())
-		else:
-			new_config_file.set_value(config_name, input_source_to_config_key(binding.current_input_source), binding.get_current_binding())
 		if binding.current_input_source == InputSources.GP_AXIS:
 			new_config_file.set_value(config_name, "gp_axis_device", binding.gp_axis_device)
 			new_config_file.set_value(config_name, "gp_axis_positive", binding.gp_axis_positive)
 
 func color_index_to_config_key(index: int, version: float=current_config.version):
-	if version == 2:
-		return btn_config_names[index]
-	else:
+	if version < 2:
 		return legacy_color_section_keys[index]
+	else:
+		return btn_config_names[index]
 	
 func input_source_to_config_key(input_source: int, version: float=current_config.version):
 	if input_source == InputSources.NONE:
