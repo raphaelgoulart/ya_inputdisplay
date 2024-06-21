@@ -6,7 +6,7 @@ func _ready():
 
 func _on_button_pressed():
 	ConfigHandler.current_config.always_show_hamburger = button_pressed
-	var hamburger = get_node("root/ButtonHamburger")
+	var hamburger = get_node("/root/Node2D/ButtonHamburger")
 	if ConfigHandler.current_config.always_show_hamburger:
 		hamburger.show()
 	else:
