@@ -37,6 +37,7 @@ func load_cfg():
 	else:
 		current_config.input_bar_width = config_file.get_value("Settings", "input_bar_width", 50)
 
+	current_config.always_show_hamburger = current_config.get_value("Settings", "always_show_hamburger", true)
 	# colors
 	load_colors()
 
