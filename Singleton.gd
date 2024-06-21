@@ -1,43 +1,34 @@
 extends Node
 
+const config_interface_scene = preload ("res://ConfigInterface/ConfigInterface.tscn")
+var config_interface: Node
+# If a spinbox has modified contents and the config interface is closed, 
+# value_changed will emit just fine.
+# However, this doesn't seem to be the case if the "normal window" is closed. 
+# to combat this, Singleton will artificially update the spinboxes. 
+# currently, the only used spinboxes' scripts are InputbarWidthSpinBox.gd and ScrollSpeedSpinBox.gd
+# which append themselves to the config_interface_spinboxes array.
+var config_interface_spinboxes = []
+
+var btns = []
+
 var inputs_gone = []
 var ips = 0
-var scroll_rate = 400
-var width = 50
-var colors = ["#00FF00","#FF0000","#FFFF00","#0000FF","#FF8000","#8000FF","#8000FF"]
-var config
-var config_version = 1.1
 var calibration
 var deadzone = 0.5
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	config = ConfigFile.new()
-	var err = config.load("user://yaid_settings.cfg")
-	if err != OK:
-		print("error reading settings file; using default values...")
-		return
-
-	config_version = config.get_value("Meta", "config_version", 1) # assume config v1, because that config version doesn't have the "Meta" section.
-	scroll_rate = config.get_value("Settings", "scroll_rate")
-	width = config.get_value("Settings", "width")
-	colors[0] = config.get_value("Colors", "green")
-	colors[1] = config.get_value("Colors", "red")
-	colors[2] = config.get_value("Colors", "yellow")
-	colors[3] = config.get_value("Colors", "blue")
-	colors[4] = config.get_value("Colors", "orange")
-	colors[5] = config.get_value("Colors", "up")
-	colors[6] = config.get_value("Colors", "down")
 	
+func _ready():
+	get_tree().set_auto_accept_quit(false)
+	DisplayServer.window_set_min_size(Vector2i(820, 64))
 func calibrate():
 	calibration = {}
 	for joypad in Input.get_connected_joypads():
 		var btn_list = {}
 		for axis in range(11):
-			btn_list[axis] = Input.get_joy_axis(joypad,axis)
+			btn_list[axis] = Input.get_joy_axis(joypad, axis)
 		calibration[joypad] = btn_list
 		
-func process_axis_input(joypad,axis,value):
+func process_axis_input(joypad, axis, value):
 	if (calibration == null): calibrate()
 	value = value - calibration[joypad][axis]
 	var result = {}
@@ -51,14 +42,15 @@ func process_axis_input(joypad,axis,value):
 func _input(ev):
 	if ev is InputEventKey and ev.pressed:
 		if not ev.echo:
-			# calibration key (`, keycode 96)
-			if ev.keycode == 96: calibrate()
+			# calibration keys (KEY_ASCIICIRCUM is ^)
+			if ev.keycode == KEY_QUOTELEFT||ev.keycode == KEY_ASCIICIRCUM: calibrate()
 		match (ev.keycode):
-			45:	scroll_rate -= 10 # -
-			61:	scroll_rate += 10 # =
-			91:	width -= 1 # [
-			93:	width += 1 # ]
-			4194308: inputs_gone = []
+			KEY_MINUS: ConfigHandler.current_config.scroll_rate -= 10
+			KEY_PLUS, KEY_EQUAL: ConfigHandler.current_config.scroll_rate += 10
+			KEY_COMMA, KEY_BRACKETLEFT: ConfigHandler.current_config.input_bar_width -= 1
+			KEY_PERIOD, KEY_BRACKETRIGHT: ConfigHandler.current_config.input_bar_width += 1
+			KEY_BACKSPACE: inputs_gone = []
+			KEY_ESCAPE: show_config_window()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -74,34 +66,25 @@ func _process(_delta):
 		inputs_gone.remove_at(x)
 	ips = len(inputs_gone)
 
-
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		
-		# save settings here
-		var new_config = ConfigFile.new()
-		# Store some values.
-		new_config.set_value("Meta", "config_version", 1.1)
-		new_config.set_value("Settings", "scroll_rate", scroll_rate)
-		new_config.set_value("Settings", "width", width)
-		new_config.set_value("Colors", "green", colors[0])
-		new_config.set_value("Colors", "red", colors[1])
-		new_config.set_value("Colors", "yellow", colors[2])
-		new_config.set_value("Colors", "blue", colors[3])
-		new_config.set_value("Colors", "orange", colors[4])
-		new_config.set_value("Colors", "up", colors[5])
-		new_config.set_value("Colors", "down", colors[6])
-		# bindings
-		var names = ["G","R","Y","B","O","U","D"]
-		var i = 0
-		for node_name in names:
-			var node = get_node("/root/Node2D/" + node_name)
-			new_config.set_value(str(i), "kb_btn", node.kb_btn)
-			new_config.set_value(str(i), "gp_btn", node.gp_btn)
-			new_config.set_value(str(i), "gp_axis", node.gp_axis)
-			new_config.set_value(str(i), "gp_axis_device", node.gp_axis_device)
-			new_config.set_value(str(i), "gp_axis_positive", node.gp_axis_positive)
-			i += 1
-		# Save it to a file (overwrite if already exists).
-		new_config.save("user://yaid_settings.cfg")
-		get_tree().quit() # default behavior
+		save_config_and_exit()
+
+func save_config_and_exit():
+	if config_interface != null:
+		for spinbox in config_interface_spinboxes:
+			spinbox.apply()
+	# wait(0.6) # to ensure the config can be updated by all ui elements
+	print("nya")
+	ConfigHandler.save_config(2)
+	get_tree().quit()
+	
+func show_config_window():
+	if config_interface == null:
+		config_interface = config_interface_scene.instantiate()
+		add_sibling(config_interface)
+	else:
+		config_interface.show()
+
+func wait(seconds: float):
+	await get_tree().create_timer(seconds).timeout

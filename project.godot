@@ -18,11 +18,14 @@ config/icon="res://Icon.svg"
 
 [autoload]
 
+InputSources="*res://InputSources.gd"
 Singleton="*res://Singleton.gd"
+ConfigHandler="*res://ConfigHandler.gd"
 
 [display]
 
 window/size/transparent=true
+window/subwindows/embed_subwindows=false
 window/per_pixel_transparency/allowed=true
 window/vsync/vsync_mode=0
 
