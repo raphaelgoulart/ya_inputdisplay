@@ -1,0 +1,34 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcjdywc38khs8"]
+
+[ext_resource type="Script" path="res://ConfigInterface/FretColorPicker.gd" id="1_wm0qo"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_83ida"]
+font_size = 14
+
+[node name="FretColorPicker" type="ColorPickerButton"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -25.0
+offset_right = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+edit_alpha = false
+script = ExtResource("1_wm0qo")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "editor easteregg"
+label_settings = SubResource("LabelSettings_83ida")
+horizontal_alignment = 1
+vertical_alignment = 1
