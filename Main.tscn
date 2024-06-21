@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://bhj0rpln5mrx4"]
 
-[ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://inputbtn.tscn" id="1_7vupe"]
-[ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://inputstrum.tscn" id="2_m1xo0"]
+[ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_7vupe"]
+[ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_m1xo0"]
 [ext_resource type="Script" path="res://IPS.gd" id="3_0vwf1"]
-[ext_resource type="Script" path="res://fps.gd" id="4_l5kbf"]
+[ext_resource type="Script" path="res://FPS.gd" id="4_l5kbf"]
 
 [node name="Node2D" type="Node2D"]
 
