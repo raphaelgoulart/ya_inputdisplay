@@ -6,5 +6,4 @@ func _ready():
 	value_changed.connect(_on_value_changed)
 
 func _on_value_changed(_value: float):
-	print("value= " + str(value))
 	ConfigHandler.current_config.scroll_rate = value

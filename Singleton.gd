@@ -69,13 +69,12 @@ func _process(_delta):
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_config_and_exit()
-
-func save_config_and_exit():
-	if config_interface != null:
+func update_spinboxes():
 		for spinbox in config_interface_spinboxes:
 			spinbox.apply()
-	# wait(0.6) # to ensure the config can be updated by all ui elements
-	print("nya")
+func save_config_and_exit():
+	if config_interface != null:
+		update_spinboxes()
 	ConfigHandler.save_config(2)
 	get_tree().quit()
 	
@@ -83,8 +82,4 @@ func show_config_window():
 	if config_interface == null:
 		config_interface = config_interface_scene.instantiate()
 		add_sibling(config_interface)
-	else:
-		config_interface.show()
-
-func wait(seconds: float):
-	await get_tree().create_timer(seconds).timeout
+	config_interface.show()
