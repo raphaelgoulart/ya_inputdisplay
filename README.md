@@ -16,6 +16,7 @@ It's made using Godot 4.2.1.
 
 ## Settings
 
+This is outdated for the most recent code, but still up to date if you use one of the releases.
 Some of these can be edited in-app, but not all; the settings file can be found in `%APPDATA%\Godot\app_userdata\ya_inputdisplay\yaid_settings.cfg`. It allows you to tweak the following values:
 
 (Note: It is recommended to *not* modify scroll_rate and width by directly editing the config file, and instead using the keybinds mentioned above.)
