@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhj0rpln5mrx4"]
+[gd_scene load_steps=10 format=3 uid="uid://bhj0rpln5mrx4"]
 
 [ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_rf5sa"]
 [ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_lan1j"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://hfjxlldsajma" path="res://ButtonHamburgerIcons/Idle.png" id="5_gohq5"]
 [ext_resource type="Texture2D" uid="uid://bb1lgvbgvt6ok" path="res://ButtonHamburgerIcons/Inbetween.png" id="6_vsqnb"]
 [ext_resource type="Texture2D" uid="uid://ds1xh0grlep6b" path="res://ButtonHamburgerIcons/Hover.png" id="7_gqgvc"]
+[ext_resource type="BitMap" uid="uid://cnj1o7mv0758k" path="res://ButtonHamburgerIcons/Click_mask.bmp" id="8_5hayx"]
 [ext_resource type="Script" path="res://ButtonHamburger.gd" id="8_dtghk"]
 
 [node name="Node2D" type="Node2D"]
@@ -77,6 +78,7 @@ offset_bottom = 20.0
 texture_normal = ExtResource("5_gohq5")
 texture_pressed = ExtResource("6_vsqnb")
 texture_hover = ExtResource("7_gqgvc")
+texture_click_mask = ExtResource("8_5hayx")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("8_dtghk")
