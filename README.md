@@ -37,7 +37,7 @@ Axis calibration is done both at program startup, or whenever `` ` `` or `` ^ ``
 ## Settings
 
 Release 0.0.5+ have a Configuration Menu accessible via the `escape` key or the Hamburger Button (as mentioned above).
-All available Settings can be adjusted there. ()
+All available Settings can be adjusted there.
 
 ### Settings For release 0.0.4 and prior
 
