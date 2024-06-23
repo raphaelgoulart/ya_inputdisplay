@@ -2,12 +2,18 @@ extends TextureButton
 
 const config_interface_scene = preload ("res://ConfigInterface/ConfigInterface.tscn")
 
-var current_alpha: float = 1
+var current_alpha: float
 var target_alpha: float = 1
-const anim_speed: float = 3
+const anim_speed: float = 3 # higher value = faster fade in/out
 
 func _ready():
 	pressed.connect(Singleton.show_config_window)
+
+	if not ConfigHandler.current_config.always_show_hamburger:
+		target_alpha = 0
+	current_alpha = target_alpha
+	modulate.a = target_alpha
+
 	mouse_entered.connect(_on_mouse_entered)
 	mouse_exited.connect(_on_mouse_exited)
 
