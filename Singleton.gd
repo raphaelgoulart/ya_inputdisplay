@@ -79,6 +79,7 @@ func save_config_and_exit():
 	if config_interface != null:
 		update_spinboxes()
 	ConfigHandler.save_config(2)
+	ConfigHandler.current_config.free()
 	get_tree().quit()
 	
 func show_config_window():
