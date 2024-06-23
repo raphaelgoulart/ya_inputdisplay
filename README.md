@@ -36,7 +36,7 @@ Axis calibration is done both at program startup, or whenever `` ` `` or `` ^ ``
 
 ## Settings
 
-Release 0.0.5+ have a Configuration Menu accessible via the `escape` key or the Hamburger Button (as mentioned above).
+Release versions 0.0.5+ have a Configuration Menu accessible via the `escape` key or the Hamburger Button (as mentioned above).
 All available Settings can be adjusted there.
 
 ### Settings For release 0.0.4 and prior
@@ -46,7 +46,8 @@ All available Settings can be adjusted there.
 - `scroll_rate`: Scrolling speed of the input bars, in pixels per second; the higher, the faster. Default: 400;
 - `width`: Sets the width in pixels of the input bars. Default: 50;
 - `green`, `red`, `yellow`, `blue`, `orange`, `up` and `down`: Sets the color of each element. Must be set as a RGB Hex value (i.e. `"#FF0000"` for red).
-(Note: On release 0.0.5+, these are called `fret_0`, `fret_1`, `fret_2`, `fret_3`, `fret_4`, `strum_up` and `strum_down.`)
+
+(Note: On release 0.0.5+, these colors are called `fret_0`, `fret_1`, `fret_2`, `fret_3`, `fret_4`, `strum_up` and `strum_down.`)
 
 If you cannot find the file, just open the input display and close it; the file is saved on application close.
 
