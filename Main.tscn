@@ -1,50 +1,55 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhj0rpln5mrx4"]
+[gd_scene load_steps=10 format=3 uid="uid://bhj0rpln5mrx4"]
 
-[ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_7vupe"]
-[ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_m1xo0"]
-[ext_resource type="Script" path="res://IPS.gd" id="3_0vwf1"]
-[ext_resource type="Script" path="res://FPS.gd" id="4_l5kbf"]
+[ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_rf5sa"]
+[ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_lan1j"]
+[ext_resource type="Script" path="res://IPS.gd" id="3_r2c6n"]
+[ext_resource type="Script" path="res://FPS.gd" id="4_i884g"]
+[ext_resource type="Texture2D" uid="uid://hfjxlldsajma" path="res://ButtonHamburgerIcons/Idle.png" id="5_gohq5"]
+[ext_resource type="Texture2D" uid="uid://bb1lgvbgvt6ok" path="res://ButtonHamburgerIcons/Inbetween.png" id="6_vsqnb"]
+[ext_resource type="Texture2D" uid="uid://ds1xh0grlep6b" path="res://ButtonHamburgerIcons/Hover.png" id="7_gqgvc"]
+[ext_resource type="BitMap" uid="uid://cnj1o7mv0758k" path="res://ButtonHamburgerIcons/Click_mask.bmp" id="8_5hayx"]
+[ext_resource type="Script" path="res://ButtonHamburger.gd" id="8_dtghk"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="G" parent="." instance=ExtResource("1_7vupe")]
+[node name="G" parent="." instance=ExtResource("1_rf5sa")]
 position = Vector2(0, 50)
 metadata/color = Color(0, 1, 0, 1)
 
-[node name="R" parent="." instance=ExtResource("1_7vupe")]
+[node name="R" parent="." instance=ExtResource("1_rf5sa")]
 position = Vector2(50, 50)
 metadata/kb_btn = 83
 metadata/color = Color(1, 0, 0, 1)
 metadata/index = 1
 metadata/gp_btn = 1
 
-[node name="Y" parent="." instance=ExtResource("1_7vupe")]
+[node name="Y" parent="." instance=ExtResource("1_rf5sa")]
 position = Vector2(100, 50)
 metadata/kb_btn = 68
 metadata/color = Color(1, 1, 0, 1)
 metadata/index = 2
 metadata/gp_btn = 3
 
-[node name="B" parent="." instance=ExtResource("1_7vupe")]
+[node name="B" parent="." instance=ExtResource("1_rf5sa")]
 position = Vector2(150, 50)
 metadata/kb_btn = 70
 metadata/color = Color(0, 0, 1, 1)
 metadata/index = 3
 metadata/gp_btn = 2
 
-[node name="O" parent="." instance=ExtResource("1_7vupe")]
+[node name="O" parent="." instance=ExtResource("1_rf5sa")]
 position = Vector2(200, 50)
 metadata/kb_btn = 71
 metadata/color = Color(1, 0.501961, 0, 1)
 metadata/index = 4
 metadata/gp_btn = 9
 
-[node name="U" parent="." instance=ExtResource("2_m1xo0")]
+[node name="U" parent="." instance=ExtResource("2_lan1j")]
 position = Vector2(0, 25)
 metadata/kb_btn = 4194320
 metadata/gp_btn = 11
 
-[node name="D" parent="." instance=ExtResource("2_m1xo0")]
+[node name="D" parent="." instance=ExtResource("2_lan1j")]
 position = Vector2(125, 25)
 metadata/kb_btn = 4194322
 metadata/index = 6
@@ -57,7 +62,7 @@ offset_bottom = 25.0
 text = "IPS: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3_0vwf1")
+script = ExtResource("3_r2c6n")
 
 [node name="FPS" type="Label" parent="."]
 visible = false
@@ -65,4 +70,15 @@ offset_left = 260.0
 offset_right = 300.0
 offset_bottom = 26.0
 text = "FPS:"
-script = ExtResource("4_l5kbf")
+script = ExtResource("4_i884g")
+
+[node name="ButtonHamburger" type="TextureButton" parent="."]
+offset_right = 20.0
+offset_bottom = 20.0
+texture_normal = ExtResource("5_gohq5")
+texture_pressed = ExtResource("6_vsqnb")
+texture_hover = ExtResource("7_gqgvc")
+texture_click_mask = ExtResource("8_5hayx")
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("8_dtghk")
