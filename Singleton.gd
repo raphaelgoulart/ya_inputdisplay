@@ -19,7 +19,16 @@ var deadzone = 0.5
 	
 func _ready():
 	get_tree().set_auto_accept_quit(false)
-	DisplayServer.window_set_min_size(Vector2i(820, 64))
+	
+	# InputBtn width is 50, so just 50*5
+	# InputBtn height is 50, InputStrum height is 25,
+	# but InputStrum is positioned 25 pixels lower, which adds up to 100
+
+	DisplayServer.window_set_min_size(Vector2i(250, 100))
+	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+
+func _on_joy_connection_changed(_device: int, _connected: bool):
+	calibrate()
 
 func calibrate():
 	calibration = {}
