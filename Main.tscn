@@ -1,14 +1,13 @@
-[gd_scene load_steps=10 format=3 uid="uid://bhj0rpln5mrx4"]
+[gd_scene load_steps=9 format=3 uid="uid://bhj0rpln5mrx4"]
 
 [ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_rf5sa"]
 [ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_lan1j"]
-[ext_resource type="Script" path="res://IPS.gd" id="3_r2c6n"]
 [ext_resource type="Script" path="res://FPS.gd" id="4_i884g"]
 [ext_resource type="Texture2D" uid="uid://hfjxlldsajma" path="res://ButtonHamburgerIcons/Idle.png" id="5_gohq5"]
 [ext_resource type="Texture2D" uid="uid://bb1lgvbgvt6ok" path="res://ButtonHamburgerIcons/Inbetween.png" id="6_vsqnb"]
 [ext_resource type="Texture2D" uid="uid://ds1xh0grlep6b" path="res://ButtonHamburgerIcons/Hover.png" id="7_gqgvc"]
 [ext_resource type="BitMap" uid="uid://cnj1o7mv0758k" path="res://ButtonHamburgerIcons/Click_mask.bmp" id="8_5hayx"]
-[ext_resource type="Script" path="res://ButtonHamburger.gd" id="8_dtghk"]
+[ext_resource type="Script" path="res://HideableUI.gd" id="8_dtghk"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -62,7 +61,8 @@ offset_bottom = 25.0
 text = "IPS: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3_r2c6n")
+script = ExtResource("8_dtghk")
+metadata/show_on_hover = false
 
 [node name="FPS" type="Label" parent="."]
 visible = false
@@ -82,3 +82,4 @@ texture_click_mask = ExtResource("8_5hayx")
 ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("8_dtghk")
+metadata/show_on_hover = true
