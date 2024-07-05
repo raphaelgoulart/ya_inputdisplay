@@ -41,6 +41,7 @@ func load_cfg():
 	current_config.always_show_hamburger = config_file.get_value("Settings", "always_show_hamburger", true)
 	current_config.show_ips = config_file.get_value("Settings", "show_ips", true)
 
+	# moved from ButtonHamburger.gd
 	if not current_config.always_show_hamburger:
 		get_node("/root/Node2D/ButtonHamburger").target_alpha = 0
 	if not current_config.show_ips:
