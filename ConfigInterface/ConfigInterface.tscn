@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://diwo8r877y02c"]
+[gd_scene load_steps=9 format=3 uid="uid://diwo8r877y02c"]
 
 [ext_resource type="Script" path="res://ConfigInterface/ConfigInterface.gd" id="1_gkws8"]
 [ext_resource type="PackedScene" uid="uid://bcresji1hnjiu" path="res://ConfigInterface/FretColorPicker.tscn" id="1_l4cb1"]
 [ext_resource type="Texture2D" uid="uid://wmw6outrhpp5" path="res://ConfigInterface/blobnomcookie.png" id="1_yue4u"]
 [ext_resource type="PackedScene" uid="uid://bcjdywc38khs8" path="res://ConfigInterface/StrumColorPicker.tscn" id="3_5dgwu"]
+[ext_resource type="Script" path="res://ConfigInterface/IPSToggle.gd" id="3_bmsq3"]
 [ext_resource type="Script" path="res://ConfigInterface/ScrollSpeedSpinBox.gd" id="4_thkfi"]
 [ext_resource type="Script" path="res://ConfigInterface/HamburgerToggle.gd" id="5_fhkjl"]
 [ext_resource type="Script" path="res://ConfigInterface/InputbarWidthSpinBox.gd" id="5_wy8my"]
@@ -11,35 +12,68 @@
 [node name="ConfigInterface" type="Window"]
 title = "ya_inputdisplay - Configuration"
 initial_position = 2
-size = Vector2i(520, 100)
+size = Vector2i(520, 125)
 transient = true
 unresizable = true
 auto_translate = false
 script = ExtResource("1_gkws8")
 
-[node name="Background" type="ColorRect" parent="."]
-anchors_preset = 15
+[node name="TogglesBackground" type="ColorRect" parent="."]
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 50.0
 grow_horizontal = 2
-grow_vertical = 2
 color = Color(0.352941, 0.352941, 0.392157, 1)
 
-[node name="MainBackground" type="ColorRect" parent="."]
+[node name="HamburgerToggle" type="CheckButton" parent="TogglesBackground"]
+layout_mode = 0
+offset_left = 380.0
+offset_right = 424.0
+offset_bottom = 25.0
+focus_mode = 0
+button_pressed = true
+script = ExtResource("5_fhkjl")
+
+[node name="Label" type="Label" parent="TogglesBackground/HamburgerToggle"]
+layout_mode = 0
+offset_left = -250.0
+offset_bottom = 25.0
+tooltip_text = "If toggled off, the Hamburger Button will only be visible when the mouse pointer is hovering over it."
+mouse_filter = 1
+text = "Always show Hamburger Button"
+
+[node name="IPSToggle" type="CheckButton" parent="TogglesBackground"]
+layout_mode = 0
+offset_left = 380.0
 offset_top = 25.0
+offset_right = 424.0
+offset_bottom = 50.0
+focus_mode = 0
+button_pressed = true
+script = ExtResource("3_bmsq3")
+
+[node name="Label" type="Label" parent="TogglesBackground/IPSToggle"]
+layout_mode = 0
+offset_left = -250.0
+offset_bottom = 25.0
+tooltip_text = "Shows/Hides the IPS (Inputs Per Second)"
+mouse_filter = 1
+text = "Show IPS"
+
+[node name="MainBackground" type="ColorRect" parent="."]
+offset_top = 50.0
 offset_right = 520.0
-offset_bottom = 125.0
+offset_bottom = 150.0
 color = Color(0, 0, 0, 1)
 
-[node name="ColorPanel" type="Panel" parent="."]
-offset_top = 25.0
+[node name="ColorPanel" type="Panel" parent="MainBackground"]
 offset_right = 250.0
-offset_bottom = 100.0
+offset_bottom = 75.0
 
-[node name="Frets" type="Control" parent="ColorPanel"]
+[node name="Frets" type="Control" parent="MainBackground/ColorPanel"]
 anchors_preset = 0
 
-[node name="0" parent="ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
+[node name="0" parent="MainBackground/ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -55,7 +89,7 @@ grow_vertical = 1
 tooltip_text = "The color of the lowest fret
 Click to edit me :D"
 
-[node name="1" parent="ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
+[node name="1" parent="MainBackground/ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -71,7 +105,7 @@ grow_vertical = 1
 tooltip_text = "The color of the second-lowest fret
 Click to edit me :D"
 
-[node name="2" parent="ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
+[node name="2" parent="MainBackground/ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -87,7 +121,7 @@ grow_vertical = 1
 tooltip_text = "The color of the middle fret
 Click to edit me :D"
 
-[node name="3" parent="ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
+[node name="3" parent="MainBackground/ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -103,7 +137,7 @@ grow_vertical = 1
 tooltip_text = "The color of the second-highest fret
 Click to edit me :D"
 
-[node name="4" parent="ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
+[node name="4" parent="MainBackground/ColorPanel/Frets" instance=ExtResource("1_l4cb1")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -119,10 +153,10 @@ grow_vertical = 1
 tooltip_text = "The color of the highest fret
 Click to edit me :D"
 
-[node name="Strums" type="Control" parent="ColorPanel"]
+[node name="Strums" type="Control" parent="MainBackground/ColorPanel"]
 anchors_preset = 0
 
-[node name="strum_up" parent="ColorPanel/Strums" instance=ExtResource("3_5dgwu")]
+[node name="strum_up" parent="MainBackground/ColorPanel/Strums" instance=ExtResource("3_5dgwu")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -136,7 +170,7 @@ offset_bottom = 25.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="strum_down" parent="ColorPanel/Strums" instance=ExtResource("3_5dgwu")]
+[node name="strum_down" parent="MainBackground/ColorPanel/Strums" instance=ExtResource("3_5dgwu")]
 layout_mode = 0
 anchors_preset = 0
 anchor_left = 0.0
@@ -150,18 +184,17 @@ offset_bottom = 25.0
 grow_horizontal = 1
 grow_vertical = 1
 
-[node name="MiscPanel" type="Panel" parent="."]
+[node name="MiscPanel" type="Panel" parent="MainBackground"]
 offset_left = 250.0
-offset_top = 25.0
 offset_right = 550.0
-offset_bottom = 100.0
+offset_bottom = 75.0
 
-[node name="ScrollSpeed" type="Panel" parent="MiscPanel"]
+[node name="ScrollSpeed" type="Panel" parent="MainBackground/MiscPanel"]
 layout_mode = 0
 offset_right = 270.0
 offset_bottom = 39.0
 
-[node name="Label" type="Label" parent="MiscPanel/ScrollSpeed"]
+[node name="Label" type="Label" parent="MainBackground/MiscPanel/ScrollSpeed"]
 layout_mode = 1
 offset_left = 5.0
 offset_right = 137.0
@@ -169,7 +202,7 @@ offset_bottom = 30.0
 text = "Scroll Speed: "
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="MiscPanel/ScrollSpeed"]
+[node name="SpinBox" type="SpinBox" parent="MainBackground/MiscPanel/ScrollSpeed"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -187,13 +220,13 @@ value = 420.0
 custom_arrow_step = 10.0
 script = ExtResource("4_thkfi")
 
-[node name="InputbarWidth" type="Panel" parent="MiscPanel"]
+[node name="InputbarWidth" type="Panel" parent="MainBackground/MiscPanel"]
 layout_mode = 1
 offset_top = 39.0
 offset_right = 270.0
 offset_bottom = 78.0
 
-[node name="Label" type="Label" parent="MiscPanel/InputbarWidth"]
+[node name="Label" type="Label" parent="MainBackground/MiscPanel/InputbarWidth"]
 layout_mode = 1
 offset_left = 5.0
 offset_right = 137.0
@@ -201,7 +234,7 @@ offset_bottom = 30.0
 text = "Input Bar Width: "
 vertical_alignment = 1
 
-[node name="SpinBox" type="SpinBox" parent="MiscPanel/InputbarWidth"]
+[node name="SpinBox" type="SpinBox" parent="MainBackground/MiscPanel/InputbarWidth"]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
@@ -219,7 +252,7 @@ rounded = true
 custom_arrow_step = 10.0
 script = ExtResource("5_wy8my")
 
-[node name="TextureRect" type="TextureRect" parent="MiscPanel"]
+[node name="TextureRect" type="TextureRect" parent="MainBackground/MiscPanel"]
 layout_mode = 0
 offset_left = 220.0
 offset_top = 30.0
@@ -228,23 +261,3 @@ offset_bottom = 126.0
 scale = Vector2(0.5, 0.5)
 tooltip_text = "Blob nom cookie"
 texture = ExtResource("1_yue4u")
-
-[node name="HamburgerToggle" type="CheckButton" parent="."]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -140.0
-offset_top = 2.0
-offset_right = -119.0
-offset_bottom = 23.0
-grow_horizontal = 2
-focus_mode = 0
-button_pressed = true
-script = ExtResource("5_fhkjl")
-
-[node name="Label" type="Label" parent="HamburgerToggle"]
-layout_mode = 0
-offset_left = 40.0
-offset_right = 289.0
-offset_bottom = 23.0
-text = "Always show Hamburger Button"

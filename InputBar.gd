@@ -26,10 +26,11 @@ func _ready():
 func _process(delta):
 	if rect.position.y > get_viewport().get_visible_rect().size.y:
 		call_deferred("free")
-	if released:
-		rect.position.y += ConfigHandler.current_config.scroll_rate * delta
-	else:
-		rect.size.y += ConfigHandler.current_config.scroll_rate * delta
+	if not Singleton.exiting:
+		if released:
+			rect.position.y += ConfigHandler.current_config.scroll_rate * delta
+		else:
+			rect.size.y += ConfigHandler.current_config.scroll_rate * delta
 
 func bar_release():
 	released = true

@@ -12,11 +12,17 @@ var config_interface_spinboxes = []
 
 var btns = []
 
+@onready
+var ips_label: Label = get_node("/root/Node2D/IPS")
+
 var inputs_gone = []
 var ips = 0
+
 var calibration
 var deadzone = 0.5
-	
+
+var exiting: bool = false
+
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	
@@ -26,6 +32,10 @@ func _ready():
 
 	DisplayServer.window_set_min_size(Vector2i(250, 100))
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+
+	# moved from ButtonHamburger.gd
+	var hamburger = get_node("/root/Node2D/ButtonHamburger")
+	hamburger.pressed.connect(show_config_window)
 
 func _on_joy_connection_changed(_device: int, _connected: bool):
 	calibrate()
@@ -67,14 +77,19 @@ func _process(_delta):
 	# auto-calibration on app start; doesn't quite work in _ready()
 	if (calibration == null): calibrate()
 	
-	var timestamp = Time.get_unix_time_from_system()
-	var inputs_to_remove = []
-	for i in inputs_gone.size():
-		if timestamp - inputs_gone[i] >= 1:
-			inputs_to_remove.insert(0, i)
-	for x in inputs_to_remove:
-		inputs_gone.remove_at(x)
-	ips = len(inputs_gone)
+	# exiting is set to true when save_config_and_exit() is called
+	if not exiting:
+		# only do ips calculation if the ips are actually visisble
+		if ConfigHandler.current_config.show_ips:
+			var timestamp = Time.get_unix_time_from_system()
+			var inputs_to_remove = []
+			for i in inputs_gone.size():
+				if timestamp - inputs_gone[i] >= 1:
+					inputs_to_remove.insert(0, i)
+			for x in inputs_to_remove:
+				inputs_gone.remove_at(x)
+			ips = len(inputs_gone)
+			ips_label.text = "IPS: " + str(Singleton.ips)
 
 func update_spinboxes():
 		for spinbox in config_interface_spinboxes:
@@ -85,9 +100,10 @@ func _notification(what):
 		save_config_and_exit()
 
 func save_config_and_exit():
+	exiting = true
 	if config_interface != null:
 		update_spinboxes()
-	ConfigHandler.save_config(2)
+	ConfigHandler.save_config()
 	ConfigHandler.current_config.free()
 	get_tree().quit()
 	
