@@ -6,7 +6,7 @@ const start_angle: int = 90
 const max_relative_angle: int = 180
 const arc_radius = 50
 const direction = COUNTERCLOCKWISE
-var current_angle: int = start_angle
+var current_angle: float = start_angle
 var input_range = {"min": (-1), "max": 1}
 var previous_points_arc
 var background: Polygon2D
@@ -79,7 +79,7 @@ func _input(ev):
 		elif ev.axis == axis_binding and ev.device == device_binding:
 			var input_range_size = input_range["max"] - input_range["min"]
 			var axis_value_from_zero = ev.axis_value - input_range["min"]
-			var fraction = axis_value_from_zero / input_range_size
+			var fraction: float = axis_value_from_zero / input_range_size
 			current_angle = start_angle - fraction * max_relative_angle
 			queue_redraw()
 
