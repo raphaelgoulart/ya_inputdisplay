@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhj0rpln5mrx4"]
+[gd_scene load_steps=11 format=3 uid="uid://bhj0rpln5mrx4"]
 
 [ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_rf5sa"]
 [ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_lan1j"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://ds1xh0grlep6b" path="res://ButtonHamburgerIcons/Hover.png" id="7_gqgvc"]
 [ext_resource type="BitMap" uid="uid://cnj1o7mv0758k" path="res://ButtonHamburgerIcons/Click_mask.bmp" id="8_5hayx"]
 [ext_resource type="Script" path="res://HideableUI.gd" id="8_dtghk"]
+[ext_resource type="Script" path="res://WhammyBar/WhammyDisk.gd" id="10_656gj"]
+[ext_resource type="Texture2D" uid="uid://c3tyumikla7kt" path="res://WhammyBar/whammy_circle_editor_preview.png" id="10_h8nwi"]
 
 [node name="Node2D" type="Node2D"]
 
@@ -83,3 +85,48 @@ ignore_texture_size = true
 stretch_mode = 0
 script = ExtResource("8_dtghk")
 metadata/show_on_hover = true
+
+[node name="WhammyDisk" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 300.0
+offset_top = 50.0
+offset_right = 400.0
+offset_bottom = 150.0
+pivot_offset = Vector2(50, 50)
+mouse_filter = 1
+script = ExtResource("10_656gj")
+
+[node name="EditorPreview" type="TextureRect" parent="WhammyDisk"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_h8nwi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Area2D" type="Area2D" parent="WhammyDisk"]
+
+[node name="Collision" type="CollisionPolygon2D" parent="WhammyDisk/Area2D"]
+editor_description = "Note: The warning about the Empty collision can be ignored. The collision is assigned upon program start."
+
+[node name="Background" type="Polygon2D" parent="WhammyDisk/Area2D"]
+z_index = -1
+color = Color(0.800491, 0.800491, 0.800491, 0.8)
+antialiased = true
+
+[node name="Label" type="Label" parent="WhammyDisk"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Label2" type="Label" parent="WhammyDisk"]
+layout_mode = 0
+offset_top = -37.0
+offset_right = 40.0
+offset_bottom = -14.0
