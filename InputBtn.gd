@@ -160,4 +160,7 @@ func update_input_counter():
 		new_inputbar.x = self.position.x
 		new_inputbar.y = self.position.y
 		add_child(new_inputbar)
-	Singleton.inputs_gone.append(timestamp)
+	# only append to inputs_gone if ips are visible
+	# (inputs_gone is used for exclusively ips calculation)
+	if ConfigHandler.current_config.show_ips:
+		Singleton.inputs_gone.append(timestamp)
