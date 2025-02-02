@@ -13,6 +13,8 @@ var background: Polygon2D
 var collision: CollisionPolygon2D
 
 func _ready():
+	Singleton.whammyDisk = self
+	set_binding(ConfigHandler.load_whammy_binding())	
 	get_node("Area2D").mouse_entered.connect(_on_mouse_enter)
 	get_node("Area2D").mouse_exited.connect(_on_mouse_exit)
 	setup_draw_stuff()
@@ -37,9 +39,9 @@ func _draw():
 		new_bg_alpha = 1
 	draw_circle_arc_poly(center_pos, arc_radius, start_angle, current_angle, Color(1, 0, 1, new_alpha))
 	background.color.a = new_bg_alpha
+
 var axis_binding = -1
 var device_binding = -2
-
 # yes, some of this is copied from inputbtn
 var insideArea = false
 var mapping = false
@@ -56,11 +58,21 @@ func set_mapping(value: bool):
 	mapping = value
 	queue_redraw()
 
+# TODO: rewrite input stuff to actually use Binding objects instead of converting back and forth
+func get_binding():
+	var result = ConfigHandler.Binding.new() # using ConfigHandler.Binding so we dont have to preload it twice
+	result.set_binding(InputSources.GP_AXIS, axis_binding, device_binding)
+	return result
+func set_binding(binding: ConfigHandler.Binding):
+	axis_binding = binding.gp_axis
+	device_binding = binding.gp_axis_device
+
 func _input(ev):
 	if ev is InputEventMouseButton and ev.pressed and ev.button_index == MOUSE_BUTTON_LEFT and insideArea:
 		set_mapping(not mapping)
 	if ev is InputEventJoypadMotion:
 		var result = Singleton.process_axis_input(ev.device, ev.axis, ev.axis_value)
+		# get initial binding on load by just using the first joypadmotion event we get
 		if axis_binding == (-1) and device_binding == (-2):
 			if result["pressed"]:
 				axis_binding = ev.axis

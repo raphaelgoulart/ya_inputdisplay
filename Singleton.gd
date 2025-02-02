@@ -11,6 +11,7 @@ var config_interface: Node
 var config_interface_spinboxes = []
 
 var btns = []
+var whammyDisk
 
 @onready
 var ips_label: Label = get_node("/root/Node2D/IPS")

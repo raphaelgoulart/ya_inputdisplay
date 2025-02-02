@@ -6,8 +6,8 @@ const Binding = preload ("res://Binding.gd")
 const InputBtn = preload ("res://InputBtn.gd")
 const Config = preload ("res://Config.gd")
 
-# v1 is release v0.0.4 and prior, v1.1 changed btn to kb_btn, v2 is release v0.0.5, v2.1 added Hide IPS
-const valid_config_versions = [1, 1.1, 2, 2.1]
+# v1 is release v0.0.4 and prior, v1.1 changed btn to kb_btn, v2 is release v0.0.5, v2.1 added Hide IPS, v2.2 added whammy binding
+const valid_config_versions = [1, 1.1, 2, 2.1, 2.2]
 
 const legacy_color_section_keys = ["green", "red", "yellow", "blue", "orange", "up", "down"]
 const btn_config_names = ["fret_0", "fret_1", "fret_2", "fret_3", "fret_4", "strum_up", "strum_down"]
@@ -57,16 +57,26 @@ func load_colors():
 
 func load_binding(btn: InputBtn): # called by an inputbtn when its _ready() function is called
 	var section_name = btn.get_config_name(current_config.version)
+	var default_binding = btn.get_meta("gp_btn")
+
 	var result = Binding.new()
 	if config_file == null:
-		result.set_binding(InputSources.GP, btn.get_meta("gp_btn"))
-		return result
+		result.set_binding(InputSources.GP, default_binding)
+	else:
+		result = get_binding_from_config_section(section_name, default_binding)
+	return result
+
+func load_whammy_binding(): # separate function for this cuz whammy is not an inputbtn
+	return get_binding_from_config_section("whammy",-1)
+
+func get_binding_from_config_section(section_name: String, default_binding):
+	var result = Binding.new()
 	
 	# default to v2 keys, if none are found, the default values will prevent any errors
 	result.set_binding(
-		config_file.get_value(section_name, "input_source", InputSources.GP),
-		config_file.get_value(section_name, "binding", btn.get_meta("gp_btn")),
-		config_file.get_value(section_name, "gp_axis_device", -2), # we can just attempt to supply the arguments for an axis binding
+		config_file.get_value(section_name, "input_source", InputSources.GP_AXIS if section_name == "whammy" else InputSources.GP),
+		config_file.get_value(section_name, "binding", default_binding),
+		config_file.get_value(section_name, "gp_axis_device", -2),    # we can just attempt to supply the arguments for an axis binding
 		config_file.get_value(section_name, "gp_axis_positive", true) # because they will be ignored anyways if current_input_source isn't GP_AXIS
 	)
 
@@ -88,7 +98,7 @@ func load_binding(btn: InputBtn): # called by an inputbtn when its _ready() func
 
 var new_config_file # this are declared here so all config file saving methods can easily access it
 var new_config_file_version
-func save_config(version: float=2.1): # version should be either 1, 1.1 or 2
+func save_config(version: float=2.2): # version should be either 1, 1.1, 2, 2.1 or 2.2
 
 	new_config_file_version = version
 	# Create new config_file file
@@ -124,15 +134,20 @@ func save_bindings():
 		var config_name = btn.get_config_name(new_config_file_version)
 	
 		var binding = btn.binding
+		save_binding(config_name, binding)
+	save_binding("whammy",Singleton.whammyDisk.get_binding())
 
-		if new_config_file_version < 2:
-			new_config_file.set_value(config_name, input_source_to_config_key(binding.current_input_source, new_config_file_version), binding.get_current_binding())
-		else:
-			new_config_file.set_value(config_name, "input_source", binding.current_input_source)
-			new_config_file.set_value(config_name, "binding", binding.get_current_binding())
-		if binding.current_input_source == InputSources.GP_AXIS:
-			new_config_file.set_value(config_name, "gp_axis_device", binding.gp_axis_device)
-			new_config_file.set_value(config_name, "gp_axis_positive", binding.gp_axis_positive)
+func save_binding(config_name, binding):
+
+	if new_config_file_version < 2:
+		new_config_file.set_value(config_name, input_source_to_config_key(binding.current_input_source, new_config_file_version), binding.get_current_binding())
+	else:
+		new_config_file.set_value(config_name, "input_source", binding.current_input_source)
+		new_config_file.set_value(config_name, "binding", binding.get_current_binding())
+	if binding.current_input_source == InputSources.GP_AXIS:
+		new_config_file.set_value(config_name, "gp_axis_device", binding.gp_axis_device)
+		new_config_file.set_value(config_name, "gp_axis_positive", binding.gp_axis_positive)
+	
 
 func color_index_to_config_key(index: int, version: float=current_config.version):
 	if version < 2:
