@@ -6,6 +6,8 @@ It's made using Godot 4.2.1.
 
 ![demo:](https://github.com/raphaelgoulart/ya_inputdisplay/blob/main/demo.gif)
 
+If you want the strums to be to the side of the frets (instead of above), consider using [this fork](https://github.com/NicoBren/ya_inputdisplay/) instead.
+
 ## FAQ/Common Issues
 
 ### Guitar not detected! What do I do?
