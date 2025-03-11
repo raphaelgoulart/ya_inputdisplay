@@ -14,6 +14,8 @@ If you want the strums to be to the side of the frets (instead of above), consid
 
 If your guitar is an Ardwiino, upgrade it to the [Santroller](https://github.com/Santroller/Santroller) firmware.
 
+If you're using a keyboard, this display doesn't work properly with keyboards; sadly, Godot is only able to read keyboard input while the program is in the foreground, **not** in the background.
+
 Otherwise, please open an issue, mentioning which guitar model it is, and whether it's only some buttons that aren't detected, or the guitar as a whole.
 
 ### Program wrongly detecting tilt/whammy as input when mapping. What do I do?
