@@ -2,12 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_rf5sa"]
 [ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_lan1j"]
-[ext_resource type="Script" path="res://FPS.gd" id="4_i884g"]
+[ext_resource type="Script" uid="uid://c1lvyeh0nqgcw" path="res://FPS.gd" id="4_i884g"]
 [ext_resource type="Texture2D" uid="uid://hfjxlldsajma" path="res://ButtonHamburgerIcons/Idle.png" id="5_gohq5"]
 [ext_resource type="Texture2D" uid="uid://bb1lgvbgvt6ok" path="res://ButtonHamburgerIcons/Inbetween.png" id="6_vsqnb"]
 [ext_resource type="Texture2D" uid="uid://ds1xh0grlep6b" path="res://ButtonHamburgerIcons/Hover.png" id="7_gqgvc"]
 [ext_resource type="BitMap" uid="uid://cnj1o7mv0758k" path="res://ButtonHamburgerIcons/Click_mask.bmp" id="8_5hayx"]
-[ext_resource type="Script" path="res://HideableUI.gd" id="8_dtghk"]
+[ext_resource type="Script" uid="uid://djkjj2xp8gqn7" path="res://HideableUI.gd" id="8_dtghk"]
 
 [node name="Node2D" type="Node2D"]
 

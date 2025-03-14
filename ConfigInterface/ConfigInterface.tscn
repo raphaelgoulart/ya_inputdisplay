@@ -1,13 +1,13 @@
 [gd_scene load_steps=9 format=3 uid="uid://diwo8r877y02c"]
 
-[ext_resource type="Script" path="res://ConfigInterface/ConfigInterface.gd" id="1_gkws8"]
+[ext_resource type="Script" uid="uid://c1swk6oy25iny" path="res://ConfigInterface/ConfigInterface.gd" id="1_gkws8"]
 [ext_resource type="PackedScene" uid="uid://bcresji1hnjiu" path="res://ConfigInterface/FretColorPicker.tscn" id="1_l4cb1"]
 [ext_resource type="Texture2D" uid="uid://wmw6outrhpp5" path="res://ConfigInterface/blobnomcookie.png" id="1_yue4u"]
 [ext_resource type="PackedScene" uid="uid://bcjdywc38khs8" path="res://ConfigInterface/StrumColorPicker.tscn" id="3_5dgwu"]
-[ext_resource type="Script" path="res://ConfigInterface/IPSToggle.gd" id="3_bmsq3"]
-[ext_resource type="Script" path="res://ConfigInterface/ScrollSpeedSpinBox.gd" id="4_thkfi"]
-[ext_resource type="Script" path="res://ConfigInterface/HamburgerToggle.gd" id="5_fhkjl"]
-[ext_resource type="Script" path="res://ConfigInterface/InputbarWidthSpinBox.gd" id="5_wy8my"]
+[ext_resource type="Script" uid="uid://ddkoeidsjlmeu" path="res://ConfigInterface/IPSToggle.gd" id="3_bmsq3"]
+[ext_resource type="Script" uid="uid://dknf7icrvodmq" path="res://ConfigInterface/ScrollSpeedSpinBox.gd" id="4_thkfi"]
+[ext_resource type="Script" uid="uid://bwoqxkhxjbnwa" path="res://ConfigInterface/HamburgerToggle.gd" id="5_fhkjl"]
+[ext_resource type="Script" uid="uid://dbqb8oacyv82l" path="res://ConfigInterface/InputbarWidthSpinBox.gd" id="5_wy8my"]
 
 [node name="ConfigInterface" type="Window"]
 auto_translate_mode = 2

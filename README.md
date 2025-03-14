@@ -6,11 +6,15 @@ It's made using Godot 4.2.1.
 
 ![demo:](https://github.com/raphaelgoulart/ya_inputdisplay/blob/main/demo.gif)
 
+If you want the strums to be to the side of the frets (instead of above), consider using [this fork](https://github.com/NicoBren/ya_inputdisplay/) instead.
+
 ## FAQ/Common Issues
 
 ### Guitar not detected! What do I do?
 
 If your guitar is an Ardwiino, upgrade it to the [Santroller](https://github.com/Santroller/Santroller) firmware.
+
+If you're using a keyboard, this display doesn't work properly with keyboards; sadly, Godot is only able to read keyboard input while the program is in the foreground, **not** in the background.
 
 Otherwise, please open an issue, mentioning which guitar model it is, and whether it's only some buttons that aren't detected, or the guitar as a whole.
 
