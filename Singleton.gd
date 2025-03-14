@@ -37,6 +37,13 @@ func _ready():
 	var hamburger = get_node("/root/Node2D/ButtonHamburger")
 	hamburger.pressed.connect(show_config_window)
 
+func _on_waterfall_strums_toggled():
+	var new_value = ConfigHandler.current_config.waterfall_strums
+	ips_label.position.x = 0 if new_value else -50
+
+func post_init():
+	ConfigHandler.current_config.waterfall_strums_toggled.connect(_on_waterfall_strums_toggled)
+
 func _on_joy_connection_changed(_device: int, _connected: bool):
 	calibrate()
 

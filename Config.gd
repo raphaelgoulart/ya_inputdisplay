@@ -7,5 +7,11 @@ var input_bar_width: int = 50
 var always_show_hamburger: bool = true
 var show_ips: bool = true
 
+var waterfall_strums: bool = true
+signal waterfall_strums_toggled
+func set_waterfall_strums(new_value: bool):
+	waterfall_strums = new_value
+	waterfall_strums_toggled.emit()
+
 # TODO: assign these to the inputbtns instead of storing them here
 var colors = [Color.GREEN, Color.RED, Color.YELLOW, Color.BLUE, Color(1, 0.5, 0), Color(0.5, 0, 1), Color(0.5, 0, 1)]

@@ -20,6 +20,8 @@ var mapping = false
 var index
 var default_font_size = 31
 var pressed = false
+var is_wide = false
+var true_index
 
 const banned_keycodes = [KEY_MINUS, KEY_PLUS, KEY_EQUAL, KEY_COMMA, KEY_BRACKETLEFT, KEY_PERIOD, KEY_BRACKETRIGHT, KEY_BACKSPACE, KEY_ESCAPE]
 
@@ -28,11 +30,14 @@ var gp_previous_framecount = 0.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	index = get_meta("index")
+	true_index = get_meta("index")
+	is_wide = name.ends_with("_wide") # this is basically just spawn_inputbar
+	index = (true_index-2) if is_wide else true_index
 	# bindings
-	binding = ConfigHandler.load_binding(self)
-	add_child(binding)
-
+	set_binding(ConfigHandler.load_binding(as_waterfall()))
+	if not is_wide:
+		add_child(binding)
+	ConfigHandler.current_config.waterfall_strums_toggled.connect(_on_waterfall_strums_toggled)
 	# colors and visual stuff
 	center = $Center
 	colorize(ConfigHandler.current_config.colors[index])
@@ -45,6 +50,19 @@ func _ready():
 	else:
 		length_label.visible = false
 	Singleton.btns.append(self)
+
+func _on_waterfall_strums_toggled():
+	var new_value = ConfigHandler.current_config.waterfall_strums
+	visible = (true_index < 5 or (is_wide != ConfigHandler.current_config.waterfall_strums))
+	spawn_inputbar = visible and not is_wide
+	# no need to move waterfall strums or wide strums
+	if true_index > 4:
+		return
+	# moving frets down if wide strums
+	if new_value:
+		position.y = 28
+	else:
+		position.y = 53
 
 func colorize(new_color: Color):
 	color = Color(new_color, center.color.a)
@@ -162,5 +180,16 @@ func update_input_counter():
 		add_child(new_inputbar)
 	# only append to inputs_gone if ips are visible
 	# (inputs_gone is used for exclusively ips calculation)
-	if ConfigHandler.current_config.show_ips:
+	if ConfigHandler.current_config.show_ips and not is_wide:
 		Singleton.inputs_gone.append(timestamp)
+
+func as_waterfall():
+	if is_wide:
+		return Singleton.btns[index]
+	return self
+func get_binding():
+	return as_waterfall().binding
+func set_binding(new_binding: Binding):
+	binding = new_binding
+	if is_wide:
+		as_waterfall().binding = new_binding

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://diwo8r877y02c"]
+[gd_scene load_steps=10 format=3 uid="uid://diwo8r877y02c"]
 
 [ext_resource type="Script" uid="uid://c1swk6oy25iny" path="res://ConfigInterface/ConfigInterface.gd" id="1_gkws8"]
 [ext_resource type="PackedScene" uid="uid://bcresji1hnjiu" path="res://ConfigInterface/FretColorPicker.tscn" id="1_l4cb1"]
 [ext_resource type="Texture2D" uid="uid://wmw6outrhpp5" path="res://ConfigInterface/blobnomcookie.png" id="1_yue4u"]
 [ext_resource type="PackedScene" uid="uid://bcjdywc38khs8" path="res://ConfigInterface/StrumColorPicker.tscn" id="3_5dgwu"]
 [ext_resource type="Script" uid="uid://ddkoeidsjlmeu" path="res://ConfigInterface/IPSToggle.gd" id="3_bmsq3"]
+[ext_resource type="Script" path="res://ConfigInterface/WaterfallToggle.gd" id="4_j40uj"]
 [ext_resource type="Script" uid="uid://dknf7icrvodmq" path="res://ConfigInterface/ScrollSpeedSpinBox.gd" id="4_thkfi"]
 [ext_resource type="Script" uid="uid://bwoqxkhxjbnwa" path="res://ConfigInterface/HamburgerToggle.gd" id="5_fhkjl"]
 [ext_resource type="Script" uid="uid://dbqb8oacyv82l" path="res://ConfigInterface/InputbarWidthSpinBox.gd" id="5_wy8my"]
@@ -13,7 +14,7 @@
 auto_translate_mode = 2
 title = "ya_inputdisplay - Configuration"
 initial_position = 2
-size = Vector2i(520, 125)
+size = Vector2i(520, 150)
 transient = true
 unresizable = true
 auto_translate = false
@@ -22,7 +23,7 @@ script = ExtResource("1_gkws8")
 [node name="TogglesBackground" type="ColorRect" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 50.0
+offset_bottom = 75.0
 grow_horizontal = 2
 color = Color(0.352941, 0.352941, 0.392157, 1)
 
@@ -61,10 +62,27 @@ tooltip_text = "Shows/Hides the IPS (Inputs Per Second)"
 mouse_filter = 1
 text = "Show IPS"
 
-[node name="MainBackground" type="ColorRect" parent="."]
+[node name="WaterfallToggle" type="CheckButton" parent="."]
+offset_left = 380.0
 offset_top = 50.0
+offset_right = 424.0
+offset_bottom = 75.0
+focus_mode = 0
+button_pressed = true
+script = ExtResource("4_j40uj")
+
+[node name="Label" type="Label" parent="WaterfallToggle"]
+layout_mode = 0
+offset_left = -250.0
+offset_bottom = 25.0
+tooltip_text = "Shows/Hides the IPS (Inputs Per Second)"
+mouse_filter = 1
+text = "Waterfall Effect Strums"
+
+[node name="MainBackground" type="ColorRect" parent="."]
+offset_top = 75.0
 offset_right = 520.0
-offset_bottom = 150.0
+offset_bottom = 175.0
 color = Color(0, 0, 0, 1)
 
 [node name="ColorPanel" type="Panel" parent="MainBackground"]
