@@ -2,7 +2,7 @@
 
 Yet another input display for Clone Hero / YARG **(WIP)**
 
-It's made using Godot 4.2.1.
+It's made using Godot 4.4.
 
 ![demo:](https://github.com/raphaelgoulart/ya_inputdisplay/blob/main/demo.gif)
 
