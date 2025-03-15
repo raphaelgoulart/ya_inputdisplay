@@ -54,7 +54,7 @@ func colorize(new_color: Color):
 	self.set_meta("color", color)
 
 func get_config_name(version):
-	if version == 2:
+	if version >= 2:
 		return ConfigHandler.btn_config_names[index]
 	else:
 		return str(index)
