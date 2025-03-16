@@ -6,8 +6,8 @@ const Binding = preload ("res://Binding.gd")
 const InputBtn = preload ("res://InputBtn.gd")
 const Config = preload ("res://Config.gd")
 
-# v1 is release v0.0.4 and prior, v1.1 changed btn to kb_btn, v2 is release v0.0.5, v2.1 added Hide IPS
-const valid_config_versions = [1, 1.1, 2, 2.1]
+# v1 is release v0.0.4 and prior, v1.1 changed btn to kb_btn, v2 is release v0.0.5, v2.1 added Hide IPS, v2.2 added borderless
+const valid_config_versions = [1, 1.1, 2, 2.1, 2.2]
 
 const legacy_color_section_keys = ["green", "red", "yellow", "blue", "orange", "up", "down"]
 const btn_config_names = ["fret_0", "fret_1", "fret_2", "fret_3", "fret_4", "strum_up", "strum_down"]
@@ -40,12 +40,14 @@ func load_cfg():
 
 	current_config.always_show_hamburger = config_file.get_value("Settings", "always_show_hamburger", true)
 	current_config.show_ips = config_file.get_value("Settings", "show_ips", true)
+	current_config.borderless = config_file.get_value("Settings", "borderless", false)
 
 	# moved from ButtonHamburger.gd
 	if not current_config.always_show_hamburger:
 		get_node("/root/Node2D/ButtonHamburger").target_alpha = 0
 	if not current_config.show_ips:
 		get_node("/root/Node2D/IPS").target_alpha = 0
+	Singleton.update_window_border(current_config.borderless)
 
 	# colors
 	load_colors()
@@ -88,7 +90,7 @@ func load_binding(btn: InputBtn): # called by an inputbtn when its _ready() func
 
 var new_config_file # this are declared here so all config file saving methods can easily access it
 var new_config_file_version
-func save_config(version: float=2.1): # version should be either 1, 1.1 or 2
+func save_config(version: float=valid_config_versions[-1]): # use last (latest) config version by default
 
 	new_config_file_version = version
 	# Create new config_file file
@@ -106,6 +108,7 @@ func save_config(version: float=2.1): # version should be either 1, 1.1 or 2
 		new_config_file.set_value("Settings", "input_bar_width", current_config.input_bar_width)
 	new_config_file.set_value("Settings", "always_show_hamburger", current_config.always_show_hamburger)
 	new_config_file.set_value("Settings", "show_ips", current_config.show_ips)
+	new_config_file.set_value("Settings", "borderless", current_config.borderless)
 	# colors
 	save_colors()
 

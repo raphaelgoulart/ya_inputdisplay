@@ -95,6 +95,9 @@ func update_spinboxes():
 		for spinbox in config_interface_spinboxes:
 			spinbox.apply()
 
+func update_window_border(value: bool):
+	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, value)
+
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST:
 		save_config_and_exit()
