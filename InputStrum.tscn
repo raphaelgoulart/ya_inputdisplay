@@ -1,9 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://o6u0cs62c6md"]
+[gd_scene load_steps=6 format=3 uid="uid://o6u0cs62c6md"]
 
 [ext_resource type="Script" uid="uid://cgsscppx3t6ix" path="res://InputBtn.gd" id="1_7v6oi"]
+[ext_resource type="FontFile" uid="uid://bd28n0jb3siqv" path="res://Fonts/LiberationSans/LiberationSans-Regular.ttf" id="2_cbl2n"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_omccp"]
 size = Vector2(125, 25)
+
+[sub_resource type="LabelSettings" id="LabelSettings_8jf5w"]
+font_size = 40
 
 [sub_resource type="LabelSettings" id="LabelSettings_t3faq"]
 font_size = 8
@@ -37,15 +41,20 @@ offset_right = 121.0
 offset_bottom = 21.0
 color = Color(1, 1, 1, 0.25098)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_top = -1.0
-offset_right = 125.0
-offset_bottom = 25.0
-alignment = 1
+[node name="LabelParent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="LabelParent"]
+layout_mode = 0
+offset_right = 250.0
+offset_bottom = 50.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_cbl2n")
 text = "0"
+label_settings = SubResource("LabelSettings_8jf5w")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
