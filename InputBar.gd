@@ -18,9 +18,9 @@ func _ready():
 	rect = $ColorRect
 	rect.color = color
 	rect.color.a = 1
-	x += floor((50 - ConfigHandler.current_config.input_bar_width) / 2.0) * ConfigHandler.current_config.window_scale
+	x += floor((50 * ConfigHandler.current_config.window_scale - ConfigHandler.current_config.input_bar_width) / 2.0)
 	rect.position.x = x
-	rect.size.x = ConfigHandler.current_config.input_bar_width * ConfigHandler.current_config.window_scale
+	rect.size.x = ConfigHandler.current_config.input_bar_width
 	rect.position.y *= ConfigHandler.current_config.window_scale
 	rect.position.y += y
 
