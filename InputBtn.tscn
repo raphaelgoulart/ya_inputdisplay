@@ -1,17 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://3u1ers8tmwr8"]
+[gd_scene load_steps=6 format=3 uid="uid://3u1ers8tmwr8"]
 
 [ext_resource type="Script" uid="uid://cgsscppx3t6ix" path="res://InputBtn.gd" id="1_fkaf7"]
+[ext_resource type="FontFile" uid="uid://bd28n0jb3siqv" path="res://Fonts/LiberationSans/LiberationSans-Regular.ttf" id="2_ss7lu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oquh7"]
 size = Vector2(50, 50)
 
-[sub_resource type="LabelSettings" id="LabelSettings_tihgl"]
-line_spacing = 0.0
-font_size = 31
+[sub_resource type="LabelSettings" id="LabelSettings_wk82i"]
+font_size = 60
 
 [sub_resource type="LabelSettings" id="LabelSettings_t3faq"]
 line_spacing = 0.0
-font_size = 12
+font_size = 24
 
 [node name="Button" type="Area2D"]
 script = ExtResource("1_fkaf7")
@@ -42,24 +42,32 @@ offset_right = 46.0
 offset_bottom = 46.0
 color = Color(1, 1, 1, 0.25098)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-offset_top = -4.0
+[node name="LabelParent" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
 offset_right = 50.0
-offset_bottom = 40.0
-alignment = 1
+offset_bottom = 50.0
+mouse_filter = 1
 
-[node name="Label" type="Label" parent="VBoxContainer"]
-layout_mode = 2
+[node name="Label" type="Label" parent="LabelParent"]
+layout_mode = 0
+offset_top = -7.0
+offset_right = 100.0
+offset_bottom = 93.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_ss7lu")
 text = "0"
-label_settings = SubResource("LabelSettings_tihgl")
+label_settings = SubResource("LabelSettings_wk82i")
 horizontal_alignment = 1
 vertical_alignment = 1
 clip_text = true
 
 [node name="Length" type="Label" parent="."]
 offset_top = 31.0
-offset_right = 50.0
-offset_bottom = 48.0
+offset_right = 100.0
+offset_bottom = 65.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("2_ss7lu")
 text = "0.000"
 label_settings = SubResource("LabelSettings_t3faq")
 horizontal_alignment = 1

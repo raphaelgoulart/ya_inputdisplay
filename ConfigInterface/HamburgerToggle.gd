@@ -1,7 +1,7 @@
 extends CheckButton
 
 @onready
-var hamburger = get_node("/root/Node2D/ButtonHamburger")
+var hamburger = Singleton.root_node.get_node("ButtonHamburger")
 
 func _ready():
 	button_pressed = ConfigHandler.current_config.always_show_hamburger

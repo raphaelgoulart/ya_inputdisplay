@@ -3,7 +3,7 @@ extends Node
 var released = false
 
 var color
-var rect
+var rect: ColorRect
 var timestamp
 var x
 var y
@@ -18,9 +18,10 @@ func _ready():
 	rect = $ColorRect
 	rect.color = color
 	rect.color.a = 1
-	x += floor((50 - ConfigHandler.current_config.input_bar_width) / 2.0)
+	x += floor((50 - ConfigHandler.current_config.input_bar_width) / 2.0) * ConfigHandler.current_config.window_scale
 	rect.position.x = x
-	rect.size.x = ConfigHandler.current_config.input_bar_width
+	rect.size.x = ConfigHandler.current_config.input_bar_width * ConfigHandler.current_config.window_scale
+	rect.position.y *= ConfigHandler.current_config.window_scale
 	rect.position.y += y
 
 func _process(delta):

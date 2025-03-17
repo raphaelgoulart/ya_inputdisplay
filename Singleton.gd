@@ -13,7 +13,9 @@ var config_interface_spinboxes = []
 var btns = []
 
 @onready
-var ips_label: Label = get_node("/root/Node2D/IPS")
+var root_node = get_node("/root/Node2D/Scaleable")
+@onready
+var ips_label: Label = root_node.get_node("IPS")
 
 var inputs_gone = []
 var ips = 0
@@ -26,16 +28,26 @@ var exiting: bool = false
 func _ready():
 	get_tree().set_auto_accept_quit(false)
 	
-	# InputBtn width is 50, so just 50*5
-	# InputBtn height is 50, InputStrum height is 25,
-	# but InputStrum is positioned 25 pixels lower, which adds up to 100
-
-	DisplayServer.window_set_min_size(Vector2i(250, 100))
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 
 	# moved from ButtonHamburger.gd
-	var hamburger = get_node("/root/Node2D/ButtonHamburger")
+	var hamburger = root_node.get_node("ButtonHamburger")
 	hamburger.pressed.connect(show_config_window)
+
+func update_window_bounds():
+	var window_scale = ConfigHandler.current_config.window_scale # shortcut
+	root_node.scale.x = window_scale
+	root_node.scale.y = window_scale
+	# var old_size: Vector2i = DisplayServer.window_get_size()
+	# var old_min_size: Vector2i = DisplayServer.window_get_min_size()
+	# InputBtn width is 50, so just 50*5
+	# InputBtn height is 50, InputStrum height is 25,
+	# but InputStrum is positioned 25 pixels lower, which adds up to 100
+	var new_min_size: Vector2i = Vector2i(ceil(250 * window_scale), ceil(100 * window_scale))
+	# print_debug("old_size: %s, old_min_size: %s, new_min_size: %s" % [old_size, old_min_size, new_min_size])
+	DisplayServer.window_set_min_size(new_min_size)
+	# if old_size == old_min_size:
+	# 	DisplayServer.window_set_size(new_min_size+Vector2i(1,1))
 
 func _on_joy_connection_changed(_device: int, _connected: bool):
 	calibrate()
