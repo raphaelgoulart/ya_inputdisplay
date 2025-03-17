@@ -1,6 +1,6 @@
 extends Object
 
-var version: float = 2.1
+var version: float = ConfigHandler.valid_config_versions[-1]
 
 var scroll_rate: float = 400.0
 var input_bar_width: int = 50
