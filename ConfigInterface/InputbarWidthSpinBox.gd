@@ -69,8 +69,8 @@ func _set_value_keep_actual(new_value: float):
 	self.actual_value_scale = actual_val_scale
 
 # this is for debugging purposes, I'll leave this code in just in case
-const sky_debug = true
-const sky_debug_verbose = true
+const sky_debug = false
+const sky_debug_verbose = false
 func sky_print(thing):
 	if sky_debug:
 		print(thing)
