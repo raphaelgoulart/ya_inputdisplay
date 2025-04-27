@@ -208,10 +208,9 @@ grow_horizontal = 0
 tooltip_text = "A value from 1-999
 The width of the Input Bars (The Colored stripes), default is 50."
 min_value = 1.0
-max_value = 320.0
-value = 40.0
-rounded = true
-custom_arrow_step = 10.0
+max_value = 50.0
+value = 50.0
+custom_arrow_step = 1.0
 script = ExtResource("5_wy8my")
 
 [node name="WindowScale" type="Panel" parent="MainBackground"]
