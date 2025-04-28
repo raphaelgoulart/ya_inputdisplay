@@ -1,5 +1,6 @@
 extends Node
 
+const VERBOSE_DEBUG_MODE = false
 const config_interface_scene = preload ("res://ConfigInterface/ConfigInterface.tscn")
 var config_interface: Node
 # If a spinbox has modified contents and the config interface is closed, 
@@ -127,3 +128,7 @@ func show_config_window():
 		config_interface = config_interface_scene.instantiate()
 		add_sibling(config_interface)
 	config_interface.show()
+
+func print_verbose(thing):
+	if VERBOSE_DEBUG_MODE:
+		print(thing)
