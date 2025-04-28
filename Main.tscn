@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ds1xh0grlep6b" path="res://ButtonHamburgerIcons/Hover.png" id="7_gqgvc"]
 [ext_resource type="BitMap" uid="uid://cnj1o7mv0758k" path="res://ButtonHamburgerIcons/Click_mask.bmp" id="8_5hayx"]
 [ext_resource type="Script" uid="uid://djkjj2xp8gqn7" path="res://HideableUI.gd" id="8_dtghk"]
-[ext_resource type="Script" path="res://PostInit.gd" id="9_03owx"]
+[ext_resource type="Script" uid="uid://cp4qj6hdxdnj2" path="res://PostInit.gd" id="9_03owx"]
 
 [node name="Node2D" type="Node2D"]
 metadata/_edit_vertical_guides_ = [3.0]
