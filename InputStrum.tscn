@@ -44,8 +44,9 @@ color = Color(1, 1, 1, 0.25098)
 [node name="LabelParent" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 125.0
+offset_bottom = 25.0
+mouse_filter = 1
 
 [node name="Label" type="Label" parent="LabelParent"]
 layout_mode = 0
