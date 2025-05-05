@@ -10,6 +10,7 @@ func _ready():
 
 func _on_value_changed(new_value: float):
 	ConfigHandler.current_config.window_scale = new_value
+	ConfigHandler.current_config.scaled_scroll_rate = ConfigHandler.current_config.scroll_rate * new_value
 	Singleton.update_window_bounds()
 	update_label(new_value)
 

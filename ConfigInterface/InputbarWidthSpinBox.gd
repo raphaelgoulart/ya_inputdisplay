@@ -20,8 +20,8 @@ func _on_actual_value_changed():
 
 func _ready():
 	Singleton.config_interface_spinboxes.append(self)
-	actual_value = value
-	value = ConfigHandler.current_config.input_bar_width
+	actual_value = ConfigHandler.current_config.input_bar_width
+	actual_value_scale = ConfigHandler.current_config.window_scale
 	value_changed.connect(_on_value_changed)
 	scale_slider.value_changed.connect(_on_window_scale_changed)
 	_on_window_scale_changed(scale_slider.value)
@@ -50,7 +50,7 @@ func _on_window_scale_changed(new_scale_value: float):
 		self.set_value_no_signal(new_value)
 		sky_print_verbose(" (3b)", new_value)
 	# self.set_actual_value(new_value, new_scale_value)
-	# _on_value_changed(self.value)
+	_on_value_changed(self.value, true)
 
 func _set_max_value_keep_actual(new_value: float):
 	Singleton.print_verbose("_set_max_value_keep_actual(%f)" % new_value)

@@ -28,13 +28,14 @@ func _process(delta):
 	if rect.position.y > get_viewport().get_visible_rect().size.y:
 		call_deferred("free")
 	if not Singleton.exiting:
+		var delta_y = ConfigHandler.current_config.scaled_scroll_rate * delta
 		if released:
-			rect.position.y += ConfigHandler.current_config.scroll_rate * delta
+			rect.position.y += delta_y
 		else:
-			rect.size.y += ConfigHandler.current_config.scroll_rate * delta
+			rect.size.y += delta_y
 
 func bar_release():
 	released = true
-	rect.size.y = (Time.get_unix_time_from_system() - timestamp) * ConfigHandler.current_config.scroll_rate
+	rect.size.y = (Time.get_unix_time_from_system() - timestamp) * ConfigHandler.current_config.scaled_scroll_rate
 	if (rect.size.y < 1): rect.size.y = 1
 	caller.released.disconnect(bar_release)

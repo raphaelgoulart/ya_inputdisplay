@@ -9,7 +9,7 @@
 [ext_resource type="Script" uid="uid://dknf7icrvodmq" path="res://ConfigInterface/ScrollSpeedSpinBox.gd" id="4_thkfi"]
 [ext_resource type="Script" uid="uid://bwoqxkhxjbnwa" path="res://ConfigInterface/HamburgerToggle.gd" id="5_fhkjl"]
 [ext_resource type="Script" uid="uid://dbqb8oacyv82l" path="res://ConfigInterface/InputbarWidthSpinBox.gd" id="5_wy8my"]
-[ext_resource type="Script" path="res://ConfigInterface/WindowScaleSlider.gd" id="6_au7in"]
+[ext_resource type="Script" uid="uid://clioujm8iab1a" path="res://ConfigInterface/WindowScaleSlider.gd" id="6_au7in"]
 
 [node name="ConfigInterface" type="Window"]
 auto_translate_mode = 2
