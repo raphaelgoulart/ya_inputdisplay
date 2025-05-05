@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bhj0rpln5mrx4"]
+[gd_scene load_steps=10 format=3 uid="uid://bhj0rpln5mrx4"]
 
 [ext_resource type="PackedScene" uid="uid://3u1ers8tmwr8" path="res://InputBtn.tscn" id="1_rf5sa"]
 [ext_resource type="PackedScene" uid="uid://o6u0cs62c6md" path="res://InputStrum.tscn" id="2_lan1j"]
 [ext_resource type="Script" uid="uid://c1lvyeh0nqgcw" path="res://FPS.gd" id="4_i884g"]
+[ext_resource type="FontFile" uid="uid://bd28n0jb3siqv" path="res://Fonts/LiberationSans/LiberationSans-Regular.ttf" id="4_wkp8b"]
 [ext_resource type="Texture2D" uid="uid://hfjxlldsajma" path="res://ButtonHamburgerIcons/Idle.png" id="5_gohq5"]
 [ext_resource type="Texture2D" uid="uid://bb1lgvbgvt6ok" path="res://ButtonHamburgerIcons/Inbetween.png" id="6_vsqnb"]
 [ext_resource type="Texture2D" uid="uid://ds1xh0grlep6b" path="res://ButtonHamburgerIcons/Hover.png" id="7_gqgvc"]
@@ -11,60 +12,70 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="G" parent="." instance=ExtResource("1_rf5sa")]
-position = Vector2(0, 50)
+[node name="Scaleable" type="Node2D" parent="."]
+
+[node name="Inputs" type="Node2D" parent="Scaleable"]
+position = Vector2(0, 25)
+
+[node name="InputBtns" type="Node2D" parent="Scaleable/Inputs"]
+position = Vector2(0, 25)
+
+[node name="G" parent="Scaleable/Inputs/InputBtns" instance=ExtResource("1_rf5sa")]
 metadata/color = Color(0, 1, 0, 1)
 
-[node name="R" parent="." instance=ExtResource("1_rf5sa")]
-position = Vector2(50, 50)
+[node name="R" parent="Scaleable/Inputs/InputBtns" instance=ExtResource("1_rf5sa")]
+position = Vector2(50, 0)
 metadata/kb_btn = 83
 metadata/color = Color(1, 0, 0, 1)
 metadata/index = 1
 metadata/gp_btn = 1
 
-[node name="Y" parent="." instance=ExtResource("1_rf5sa")]
-position = Vector2(100, 50)
+[node name="Y" parent="Scaleable/Inputs/InputBtns" instance=ExtResource("1_rf5sa")]
+position = Vector2(100, 0)
 metadata/kb_btn = 68
 metadata/color = Color(1, 1, 0, 1)
 metadata/index = 2
 metadata/gp_btn = 3
 
-[node name="B" parent="." instance=ExtResource("1_rf5sa")]
-position = Vector2(150, 50)
+[node name="B" parent="Scaleable/Inputs/InputBtns" instance=ExtResource("1_rf5sa")]
+position = Vector2(150, 0)
 metadata/kb_btn = 70
 metadata/color = Color(0, 0, 1, 1)
 metadata/index = 3
 metadata/gp_btn = 2
 
-[node name="O" parent="." instance=ExtResource("1_rf5sa")]
-position = Vector2(200, 50)
+[node name="O" parent="Scaleable/Inputs/InputBtns" instance=ExtResource("1_rf5sa")]
+position = Vector2(200, 0)
 metadata/kb_btn = 71
 metadata/color = Color(1, 0.501961, 0, 1)
 metadata/index = 4
 metadata/gp_btn = 9
 
-[node name="U" parent="." instance=ExtResource("2_lan1j")]
-position = Vector2(0, 25)
+[node name="InputStrums" type="Node2D" parent="Scaleable/Inputs"]
+
+[node name="U" parent="Scaleable/Inputs/InputStrums" instance=ExtResource("2_lan1j")]
 metadata/kb_btn = 4194320
 metadata/gp_btn = 11
 
-[node name="D" parent="." instance=ExtResource("2_lan1j")]
-position = Vector2(125, 25)
+[node name="D" parent="Scaleable/Inputs/InputStrums" instance=ExtResource("2_lan1j")]
+position = Vector2(125, 0)
 metadata/kb_btn = 4194322
 metadata/index = 6
 metadata/gp_btn = 12
 
-[node name="IPS" type="Label" parent="."]
-offset_top = -1.0
-offset_right = 250.0
-offset_bottom = 25.0
+[node name="IPS" type="Label" parent="Scaleable"]
+offset_right = 500.0
+offset_bottom = 50.0
+scale = Vector2(0.5, 0.5)
+theme_override_fonts/font = ExtResource("4_wkp8b")
+theme_override_font_sizes/font_size = 40
 text = "IPS: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("8_dtghk")
 metadata/show_on_hover = false
 
-[node name="FPS" type="Label" parent="."]
+[node name="FPS" type="Label" parent="Scaleable"]
 visible = false
 offset_left = 260.0
 offset_right = 300.0
@@ -72,7 +83,7 @@ offset_bottom = 26.0
 text = "FPS:"
 script = ExtResource("4_i884g")
 
-[node name="ButtonHamburger" type="TextureButton" parent="."]
+[node name="ButtonHamburger" type="TextureButton" parent="Scaleable"]
 offset_right = 20.0
 offset_bottom = 20.0
 texture_normal = ExtResource("5_gohq5")

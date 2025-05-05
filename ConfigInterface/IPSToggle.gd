@@ -1,7 +1,7 @@
 extends CheckButton
 
 @onready
-var ips_label = get_node("/root/Node2D/IPS")
+var ips_label = Singleton.root_node.get_node("IPS")
 
 func _ready():
 	button_pressed = ConfigHandler.current_config.show_ips

@@ -5,20 +5,20 @@ const Binding = preload ("res://Binding.gd")
 var binding: Binding
 signal released
 
-var label
-var center
-var color
-var count = 0
+var label: Label
+var center: ColorRect
+var color: Color
+var count: int = 0
 var max_alpha = 0.5
 var fade_rate = 4
 var spawn_inputbar = true
-var length_label
+var length_label: Label
 var length = 0
-var timestamp
-var insideArea = false
-var mapping = false
-var index
-var default_font_size = 31
+var timestamp: float
+var insideArea: bool = false
+var mapping: bool = false
+var index: int
+var default_font_size: int = 31
 var pressed = false
 
 const banned_keycodes = [KEY_MINUS, KEY_PLUS, KEY_EQUAL, KEY_COMMA, KEY_BRACKETLEFT, KEY_PERIOD, KEY_BRACKETRIGHT, KEY_BACKSPACE, KEY_ESCAPE]
@@ -37,9 +37,10 @@ func _ready():
 	center = $Center
 	colorize(ConfigHandler.current_config.colors[index])
 	spawn_inputbar = get_meta("inputbar")
-	label = $VBoxContainer/Label
+	label = $LabelParent/Label
 	length_label = $Length
 	if spawn_inputbar:
+		default_font_size = label.label_settings.font_size
 		label.label_settings = LabelSettings.new()
 		label.label_settings.font_size = default_font_size
 	else:
@@ -147,18 +148,18 @@ func update_input_counter():
 	if spawn_inputbar:
 		# resize text dynamically
 		var font = label.get_theme_default_font()
-		var width = font.get_string_size(label.text, label.horizontal_alignment, -1, default_font_size).x
-		if (width > 46):
-			var rate = 46 / width
-			label.label_settings.font_size = default_font_size * rate
+		var width = font.get_string_size(label.text, label.horizontal_alignment, -1, default_font_size).x * label.scale.x
+		if (width > 44):
+			var rate = 44 / width
+			label.label_settings.font_size = round(default_font_size * rate)
 		#
 		length = 0
 		var new_inputbar = inputbar.instantiate()
 		new_inputbar.set_caller(self)
 		new_inputbar.color = color
 		new_inputbar.timestamp = timestamp
-		new_inputbar.x = self.position.x
-		new_inputbar.y = self.position.y
+		new_inputbar.x = self.global_position.x
+		new_inputbar.y = self.global_position.y
 		add_child(new_inputbar)
 	# only append to inputs_gone if ips are visible
 	# (inputs_gone is used for exclusively ips calculation)
